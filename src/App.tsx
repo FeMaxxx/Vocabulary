@@ -1,8 +1,9 @@
 // import { Navigate, Route, Routes } from "react-router-dom";
+import { FC } from "react";
 
-function App() {
+const App: FC = () => {
   return (
-    <div>hello</div>
+    <div>aaa</div>
 
     // <Routes>
     //   <Route path="/" element={<Navigate to="/" />}>
@@ -10,6 +11,6 @@ function App() {
     //   </Route>
     // </Routes>
   );
-}
+};
 
 export default App;
