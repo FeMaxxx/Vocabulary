@@ -1,12 +1,14 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+// import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/" />}>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+    <div>hello</div>
+
+    // <Routes>
+    //   <Route path="/" element={<Navigate to="/" />}>
+    //     <Route path="*" element={<Navigate to="/" />} />
+    //   </Route>
+    // </Routes>
   );
 }
 
