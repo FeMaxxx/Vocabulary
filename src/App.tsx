@@ -1,15 +1,17 @@
-// import { Navigate, Route, Routes } from "react-router-dom";
 import { FC } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import SharedLayout from "./components/SharedLayout";
 
 const App: FC = () => {
   return (
-    <div>aaa</div>
-
-    // <Routes>
-    //   <Route path="/" element={<Navigate to="/" />}>
-    //     <Route path="*" element={<Navigate to="/" />} />
-    //   </Route>
-    // </Routes>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        {/* <Route index element={<Home />} />
+        <Route path="/movies" element={<Info />} /> */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 };
 
