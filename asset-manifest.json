@@ -1,13 +1,17 @@
 {
   "files": {
-    "main.css": "/Vocabulary/static/css/main.da5948f0.css",
-    "main.js": "/Vocabulary/static/js/main.6d36b11c.js",
+    "main.css": "/Vocabulary/static/css/main.1f9f67a8.css",
+    "main.js": "/Vocabulary/static/js/main.a062c7f8.js",
+    "static/media/Quicksand-Bold.ttf": "/Vocabulary/static/media/Quicksand-Bold.a0a11318dd0b528da77d.ttf",
+    "static/media/logo.svg": "/Vocabulary/static/media/logo.ded63d2166357b7011a1827f6a7f2a08.svg",
+    "static/media/home.svg": "/Vocabulary/static/media/home.df7a30a91014390326d51d35f6018886.svg",
+    "static/media/info.svg": "/Vocabulary/static/media/info.25ba0058e48df12a987093313f4753fb.svg",
     "index.html": "/Vocabulary/index.html",
-    "main.da5948f0.css.map": "/Vocabulary/static/css/main.da5948f0.css.map",
-    "main.6d36b11c.js.map": "/Vocabulary/static/js/main.6d36b11c.js.map"
+    "main.1f9f67a8.css.map": "/Vocabulary/static/css/main.1f9f67a8.css.map",
+    "main.a062c7f8.js.map": "/Vocabulary/static/js/main.a062c7f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.da5948f0.css",
-    "static/js/main.6d36b11c.js"
+    "static/css/main.1f9f67a8.css",
+    "static/js/main.a062c7f8.js"
   ]
 }
