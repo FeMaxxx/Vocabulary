@@ -17,27 +17,28 @@ export const Button = styled.button`
 
   transition: background var(--animation);
 
-  & svg:last-child {
-    fill: var(--primaryColor);
+  &.active {
+    border-color: var(--primaryDisabledColor);
+    & svg:last-child {
+      fill: var(--primaryDisabledColor);
+    }
+
+    &:hover,
+    &:focus {
+      cursor: default;
+      background: none;
+    }
   }
 
-  &:hover,
-  &:focus {
-    background: var(--howerColor);
-  }
-`;
+  &.standart {
+    & svg:last-child {
+      fill: var(--primaryColor);
+    }
 
-export const ActiveButton = styled(Button)`
-  border-color: var(--primaryDisabledColor);
-
-  & svg:last-child {
-    fill: var(--primaryDisabledColor);
-  }
-
-  &:hover,
-  &:focus {
-    cursor: default;
-    background: none;
+    &:hover,
+    &:focus {
+      background: var(--howerColor);
+    }
   }
 `;
 

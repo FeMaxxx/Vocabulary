@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button, ActiveButton, HomeIcon, InfoIcon } from "./ButtonIcon.styled";
+import { Button, HomeIcon, InfoIcon } from "./ButtonIcon.styled";
 import { useNavigate } from "react-router-dom";
 
 interface ButtonIconProps {
@@ -25,17 +25,8 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
     }
   };
 
-  if (isActive) {
-    return (
-      <ActiveButton onClick={onClick}>
-        {icon === "home" && <HomeIcon />}
-        {icon === "info" && <InfoIcon />}
-      </ActiveButton>
-    );
-  }
-
   return (
-    <Button onClick={onClick}>
+    <Button className={`${isActive ? "active" : "standart"}`} onClick={onClick}>
       {icon === "home" && <HomeIcon />}
       {icon === "info" && <InfoIcon />}
     </Button>

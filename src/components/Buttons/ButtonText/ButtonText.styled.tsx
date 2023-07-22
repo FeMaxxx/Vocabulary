@@ -11,29 +11,31 @@ export const Button = styled.button`
   border-radius: 20px;
 
   color: var(--primaryColor);
-
   background: none;
 
   font-size: 18px;
 
-  transition: background var(--animation);
-
   span::first-letter {
     text-transform: uppercase;
   }
-  &:hover,
-  &:focus {
-    background: var(--howerColor);
+
+  transition: background var(--animation);
+
+  &.active {
+    color: var(--primaryDisabledColor);
+    border-color: var(--primaryDisabledColor);
+
+    &:hover,
+    &:focus {
+      cursor: default;
+      background: none;
+    }
   }
-`;
 
-export const ActiveButton = styled(Button)`
-  color: var(--primaryDisabledColor);
-  border-color: var(--primaryDisabledColor);
-
-  &:hover,
-  &:focus {
-    cursor: default;
-    background: none;
+  &.standart {
+    &:hover,
+    &:focus {
+      background: var(--howerColor);
+    }
   }
 `;

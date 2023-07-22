@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button, ActiveButton } from "./ButtonText.styled";
+import { Button } from "./ButtonText.styled";
 import { useNavigate } from "react-router-dom";
 
 interface ButtonTextProps {
@@ -26,19 +26,8 @@ export const ButtonText: FC<ButtonTextProps> = ({
     }
   };
 
-  if (isActive) {
-  }
-
-  if (isActive) {
-    return (
-      <ActiveButton onClick={onClick}>
-        <span>{text}</span>
-      </ActiveButton>
-    );
-  }
-
   return (
-    <Button onClick={onClick}>
+    <Button className={`${isActive ? "active" : "standart"}`} onClick={onClick}>
       <span>{text}</span>
     </Button>
   );
