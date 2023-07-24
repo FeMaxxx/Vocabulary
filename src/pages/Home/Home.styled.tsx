@@ -7,19 +7,24 @@ export const Container = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 15px;
   align-items: center;
+
+  gap: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     gap: 30px;
     padding-top: 30px;
+    padding-bottom: 30px;
   }
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
-    height: 850px;
+    height: clamp(450px, 100vh - 80px, 800px);
     align-items: start;
+
     padding-left: min(3vw, 55px);
-    padding-top: 130px;
+    padding-top: min(12vh, 130px);
     gap: 35px;
   }
 `;

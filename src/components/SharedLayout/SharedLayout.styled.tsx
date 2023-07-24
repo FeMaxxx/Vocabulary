@@ -40,7 +40,8 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  padding: min(3vw, 55px);
+  padding-left: min(3vw, 55px);
+  padding-right: min(3vw, 55px);
   display: flex;
   align-items: center;
   justify-content: space-between;

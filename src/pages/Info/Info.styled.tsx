@@ -8,20 +8,24 @@ export const Container = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
+
   padding-top: 15px;
-  width: 100%;
+  padding-bottom: 15px;
   gap: 15px;
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     padding-top: 20px;
+    padding-bottom: 20px;
     gap: 20px;
   }
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
-    padding-top: 130px;
+    height: clamp(440px, 100vh - 80px, 800px);
+
+    padding-top: min(12vh, 130px);
     padding-left: 390px;
     padding-right: min(3vw, 55px);
-    height: 850px;
+    padding-bottom: 30px;
   }
 
   @media screen and (min-width: ${mediaSizes.largeDesktop}) {
