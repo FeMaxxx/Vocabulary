@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { Navigation } from "../Navigation/Navigation";
+import { Main } from "../Main/Main";
 import {
+  Layout,
   Container,
   Header,
   Logo,
@@ -11,20 +13,22 @@ import {
 
 const SharedLayout: FC = () => {
   return (
-    <Container>
+    <Layout>
       <Header>
-        <Logo to={"/"}>
-          <LogoIcon />
-          <SiteName>Vocabulary</SiteName>
-        </Logo>
+        <Container>
+          <Logo to={"/"}>
+            <LogoIcon />
+            <SiteName>Vocabulary</SiteName>
+          </Logo>
 
-        <Navigation />
+          <Navigation />
+        </Container>
       </Header>
 
-      <main>
+      <Main>
         <Outlet />
-      </main>
-    </Container>
+      </Main>
+    </Layout>
   );
 };
 

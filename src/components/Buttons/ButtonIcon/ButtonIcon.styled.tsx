@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
-import { ReactComponent as Info } from "../../../images/info.svg";
-import { ReactComponent as Home } from "../../../images/home.svg";
+import { useSvg } from "../../../hooks/useSvg";
+
+const { Info, Home } = useSvg;
 
 export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 48px;
-  width: 48px;
+  height: 40px;
+  width: 40px;
 
   border: 2px solid var(--primaryColor);
   border-radius: 100%;
@@ -40,14 +41,29 @@ export const Button = styled.button`
       background: var(--howerColor);
     }
   }
+
+  @media screen and (min-width: 1024px) {
+    height: 48px;
+    width: 48px;
+  }
 `;
 
 export const InfoIcon = styled(Info)`
-  width: 12px;
-  height: 28px;
+  width: 10px;
+  height: 22px;
+
+  @media screen and (min-width: 1024px) {
+    width: 12px;
+    height: 28px;
+  }
 `;
 
 export const HomeIcon = styled(Home)`
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
+
+  @media screen and (min-width: 1024px) {
+    width: 28px;
+    height: 28px;
+  }
 `;

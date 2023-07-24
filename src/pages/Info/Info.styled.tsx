@@ -1,3 +1,101 @@
 import styled from "@emotion/styled";
+import { useSvg } from "../../hooks/useSvg";
+import { mediaSizes } from "../../constants/mediaSizes";
 
-export const container = styled.section``;
+const { vocaryInfoSmile } = useSvg;
+
+export const Container = styled.section`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  width: 100%;
+  gap: 15px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    padding-top: 20px;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    padding-top: 130px;
+    padding-left: 390px;
+    padding-right: min(3vw, 55px);
+    height: 850px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.largeDesktop}) {
+    padding-left: 410px;
+  }
+`;
+
+export const Text = styled.p`
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.middleDesktop}) {
+    font-size: 28px;
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+  justify-content: center;
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    justify-content: start;
+    margin-top: 15px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.middleDesktop}) {
+  }
+
+  @media screen and (min-width: ${mediaSizes.largeDesktop}) {
+  }
+`;
+
+export const Vocary = styled(vocaryInfoSmile)`
+  display: none;
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 350px;
+    height: 350px;
+
+    transform: translate(0, -50%);
+  }
+
+  @media screen and (min-width: ${mediaSizes.middleDesktop}) {
+    width: 350px;
+    height: 350px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.largeDesktop}) {
+    width: 390px;
+    height: 390px;
+  }
+`;
