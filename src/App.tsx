@@ -1,11 +1,14 @@
 import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-
 import SharedLayout from "./components/SharedLayout";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import gsap from "gsap";
+import { Flip, Bounce } from "gsap/all";
+
+gsap.registerPlugin(Flip, Bounce);
 
 const App: FC = () => {
   return (

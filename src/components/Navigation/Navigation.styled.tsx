@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useSvg } from "../../hooks/useSvg";
-const { burgerMenu } = useSvg;
+const { BurgerMenu } = useSvg;
 
 export const Nav = styled.nav`
   display: none;
@@ -24,4 +24,4 @@ export const BurgerBtn = styled.button`
   }
 `;
 
-export const BurgerBtnIcon = styled(burgerMenu)``;
+export const BurgerBtnIcon = styled(BurgerMenu)``;

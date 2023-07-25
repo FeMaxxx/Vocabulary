@@ -14,10 +14,17 @@ body {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
+input {
+  cursor: text;
+}
+
 button,
 input {
   outline: none;
-  cursor: pointer;
   border: none;
   padding: 0px;
   color: inherit;

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useSvg } from "../../hooks/useSvg";
 import { mediaSizes } from "../../constants/mediaSizes";
 
-const { vocaryInfoSmile } = useSvg;
+const { VocaryInfoSmile } = useSvg;
 
 export const Container = styled.section`
   position: relative;
@@ -79,7 +79,7 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
-export const Vocary = styled(vocaryInfoSmile)`
+export const Vocary = styled(VocaryInfoSmile)`
   display: none;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
