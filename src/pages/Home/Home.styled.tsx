@@ -96,6 +96,8 @@ export const Vocary = styled(VocaryHomeSmile)`
     right: 0;
 
     transform: translate(0, -50%);
+
+    animation: vocaryFly 3s infinite ease-in-out;
   }
 
   @media screen and (min-width: ${mediaSizes.middleDesktop}) {

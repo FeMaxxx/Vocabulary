@@ -20,7 +20,6 @@ const Register: FC = () => {
   const eyeRight = useRef(null);
   const mouth = useRef(null);
   const googleBtn = useRef(null);
-
   const screenWidth = window.innerWidth;
 
   useEffect(() => {
