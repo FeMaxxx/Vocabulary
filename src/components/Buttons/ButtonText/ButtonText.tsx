@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Button } from "./ButtonText.styled";
 import { useNavigate } from "react-router-dom";
+import { BtnFillAnimation } from "../BtnFillAnimation";
 
 interface ButtonTextProps {
   text: string;
@@ -29,6 +30,7 @@ export const ButtonText: FC<ButtonTextProps> = ({
   return (
     <Button className={`${isActive ? "active" : "standart"}`} onClick={onClick}>
       <span>{text}</span>
+      <BtnFillAnimation />
     </Button>
   );
 };

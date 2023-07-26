@@ -2,41 +2,48 @@ import styled from "@emotion/styled";
 import { mediaSizes } from "../../../constants/mediaSizes";
 
 export const Button = styled.button`
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
 
   height: 30px;
-  padding: 0 10px;
-
   border: 2px solid var(--primaryColor);
   border-radius: 20px;
 
   color: var(--primaryColor);
   background: none;
-
   font-size: 14px;
+
+  transition: color var(--animation);
+
+  span {
+    padding: 0 10px;
+  }
 
   span::first-letter {
     text-transform: uppercase;
   }
 
-  transition: background var(--animation);
+  &:hover {
+    color: var(--textColor);
+  }
+
+  &:hover div {
+    top: 0;
+  }
 
   &.active {
-    color: var(--primaryDisabledColor);
-    border-color: var(--primaryDisabledColor);
+    border-color: var(--primaryColor);
+    color: var(--textColor);
 
     &:hover,
     &:focus {
       cursor: default;
-      background: none;
     }
-  }
 
-  &.standart {
-    &:hover,
-    &:focus {
-      background: var(--howerColor);
+    & div {
+      top: 0;
     }
   }
 

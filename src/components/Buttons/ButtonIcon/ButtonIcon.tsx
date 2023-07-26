@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Button, HomeIcon, InfoIcon } from "./ButtonIcon.styled";
 import { useNavigate } from "react-router-dom";
+import { BtnFillAnimation } from "../BtnFillAnimation";
 
 interface ButtonIconProps {
   icon: string;
@@ -29,6 +30,7 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
     <Button className={`${isActive ? "active" : "standart"}`} onClick={onClick}>
       {icon === "home" && <HomeIcon />}
       {icon === "info" && <InfoIcon />}
+      <BtnFillAnimation />
     </Button>
   );
 };
