@@ -25,11 +25,13 @@ export const Button = styled.button`
     text-transform: uppercase;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: var(--textColor);
   }
 
-  &:hover div {
+  &:hover div,
+  &:focus div {
     top: 0;
   }
 

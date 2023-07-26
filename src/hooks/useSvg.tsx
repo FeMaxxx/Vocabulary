@@ -6,6 +6,7 @@ import { ReactComponent as BurgerMenu } from "../images/burgerMenu.svg";
 import { ReactComponent as VocaryInfoSmile } from "../images/vocaryInfoSmile.svg";
 import { ReactComponent as VocaryEye } from "../images/vocaryEye.svg";
 import { ReactComponent as VocaryMouth } from "../images/vocaryMouth.svg";
+import { ReactComponent as Google } from "../images/google.svg";
 
 export const useSvg = {
   Logo,
@@ -16,4 +17,5 @@ export const useSvg = {
   VocaryInfoSmile,
   VocaryEye,
   VocaryMouth,
+  Google,
 };

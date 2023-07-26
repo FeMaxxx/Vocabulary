@@ -1,30 +1,32 @@
 import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { gsap } from "gsap";
+import { regexps } from "../../constants";
+import { BtnFillAnimation } from "../Buttons";
 import {
   Form,
   Label,
   Input,
   SubmitBtn,
-  BtnFill,
   ErrorMessage,
 } from "./RegisterForm.styled";
-
-const emailRegexp =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<;>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const RegisterForm: FC = () => {
   const form = useRef(null);
   const submitBtn = useRef(null);
-  const btnFill = useRef(null);
   const error = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (email === "") return;
+  const screenWidth = window.innerWidth;
 
-    if (!emailRegexp.test(email)) {
+  useEffect(() => {
+    if (email === "") {
+      setErrorMessage(null);
+      return;
+    }
+
+    if (!regexps.email.test(email)) {
       setErrorMessage("Email is not correct, example - vocary@gmail.com");
       return;
     }
@@ -33,7 +35,10 @@ export const RegisterForm: FC = () => {
   }, [email]);
 
   useEffect(() => {
-    if (password === "") return;
+    if (password === "") {
+      setErrorMessage(null);
+      return;
+    }
 
     if (/\s/.test(password.trim())) {
       setErrorMessage("Password must not contain spaces");
@@ -65,7 +70,7 @@ export const RegisterForm: FC = () => {
 
   useEffect(() => {
     if (
-      emailRegexp.test(email) &&
+      regexps.email.test(email) &&
       password.length >= 8 &&
       errorMessage === null
     ) {
@@ -73,31 +78,44 @@ export const RegisterForm: FC = () => {
         cursor: "pointer",
         opacity: 1,
         duration: 0.2,
+        zIndex: 10,
       });
       gsap.to(error.current, {
         opacity: 0,
         duration: 0.2,
+        zIndex: 1,
       });
     } else {
       gsap.to(submitBtn.current, {
         cursor: "default",
         opacity: 0,
         duration: 0.2,
+        zIndex: 1,
       });
       gsap.to(error.current, {
         opacity: 1,
         duration: 0.2,
+        zIndex: 10,
       });
     }
   }, [email, errorMessage, password]);
 
   useEffect(() => {
+    if (screenWidth < 768) {
+      gsap.to(form.current, {
+        duration: 0,
+        display: "flex",
+      });
+
+      return;
+    }
+
     gsap.to(form.current, {
       duration: 0,
       display: "flex",
       delay: 1.4,
     });
-  }, []);
+  }, [screenWidth]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
@@ -130,7 +148,7 @@ export const RegisterForm: FC = () => {
         <Input
           onChange={handleInput}
           name="password"
-          type="passwor"
+          type="text"
           placeholder="password"
           value={password}
         />
@@ -140,7 +158,7 @@ export const RegisterForm: FC = () => {
 
       <SubmitBtn ref={submitBtn} type="submit">
         Register
-        <BtnFill ref={btnFill} />
+        <BtnFillAnimation />
       </SubmitBtn>
     </Form>
   );

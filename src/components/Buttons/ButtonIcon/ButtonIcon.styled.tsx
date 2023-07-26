@@ -21,11 +21,13 @@ export const Button = styled.button`
 
   transition: fill var(--animation);
 
-  &:hover {
+  &:hover,
+  &:focus {
     fill: var(--whiteColor);
   }
 
-  &:hover div {
+  &:hover div,
+  &:focus div {
     top: 0;
   }
 

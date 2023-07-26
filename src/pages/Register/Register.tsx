@@ -1,6 +1,7 @@
 import { FC, useRef, useEffect } from "react";
 import { RegisterForm } from "../../components/RegisterForm";
 import { gsap } from "gsap";
+import { BtnFillAnimation } from "../../components/Buttons";
 import {
   Container,
   VocaryHead,
@@ -8,6 +9,8 @@ import {
   EyeRight,
   Mouth,
   Fill,
+  GoogleBtn,
+  GoogleIcon,
 } from "./Register.styled";
 
 const Register: FC = () => {
@@ -16,18 +19,28 @@ const Register: FC = () => {
   const eyeLeft = useRef(null);
   const eyeRight = useRef(null);
   const mouth = useRef(null);
+  const googleBtn = useRef(null);
+
+  const screenWidth = window.innerWidth;
 
   useEffect(() => {
+    if (screenWidth < 768) return;
+
+    gsap.to([eyeLeft.current, eyeRight.current, mouth.current], {
+      duration: 0,
+      display: "block",
+    });
     gsap.fromTo(
       vocaryHead.current,
-      { y: "-1000%" },
+      { y: "-1000%", scale: 0.1 },
       { duration: 0.5, y: "150px" }
     );
     gsap.to(vocaryHead.current, {
       duration: 0.5,
       delay: 0.5,
-      scale: 7,
+      scale: 1,
       y: "-0%",
+      ease: "elastic.out(1.3, 1.1)",
     });
     gsap.fromTo(
       fill.current,
@@ -37,12 +50,19 @@ const Register: FC = () => {
       },
       { y: "100%", delay: 1, duration: 2 }
     );
+    gsap.fromTo(
+      googleBtn.current,
+      {
+        x: "1000px",
+      },
+      { x: "0px", delay: 2, duration: 1, ease: "elastic.out(1.1, 1.1)" }
+    );
     gsap.to([eyeLeft.current, eyeRight.current, mouth.current], {
       duration: 0,
       delay: 1.7,
       display: "none",
     });
-  }, []);
+  }, [screenWidth]);
 
   return (
     <Container>
@@ -54,6 +74,11 @@ const Register: FC = () => {
       </VocaryHead>
 
       <RegisterForm />
+
+      <GoogleBtn ref={googleBtn}>
+        <GoogleIcon />
+        <BtnFillAnimation />
+      </GoogleBtn>
     </Container>
   );
 };
