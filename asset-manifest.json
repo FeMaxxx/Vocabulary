@@ -1,7 +1,11 @@
 {
   "files": {
-    "main.css": "/Vocabulary/static/css/main.b2f5481e.css",
-    "main.js": "/Vocabulary/static/js/main.06a6f16b.js",
+    "main.css": "/Vocabulary/static/css/main.3d878bad.css",
+    "main.js": "/Vocabulary/static/js/main.863537ff.js",
+    "static/media/beckgroundDecktop@2x.png": "/Vocabulary/static/media/beckgroundDecktop@2x.b990e2d7dd06bbd48512.png",
+    "static/media/beckgroundMobile@2x.png": "/Vocabulary/static/media/beckgroundMobile@2x.b8dcd105a777a2a64aa1.png",
+    "static/media/beckgroundDecktop@1x.png": "/Vocabulary/static/media/beckgroundDecktop@1x.ba3d212f5b25bbc00df8.png",
+    "static/media/beckgroundMobile@1x.png": "/Vocabulary/static/media/beckgroundMobile@1x.ec44641a736896fb3271.png",
     "static/media/Quicksand-Bold.ttf": "/Vocabulary/static/media/Quicksand-Bold.a0a11318dd0b528da77d.ttf",
     "static/media/logo.svg": "/Vocabulary/static/media/logo.ded63d2166357b7011a1827f6a7f2a08.svg",
     "static/media/vocaryHomeSmile.svg": "/Vocabulary/static/media/vocaryHomeSmile.7b192357e84267a2edca29eb744101fd.svg",
@@ -13,11 +17,11 @@
     "static/media/vocaryMouth.svg": "/Vocabulary/static/media/vocaryMouth.463785140a37b2d0bd7798ce54bc6b9d.svg",
     "static/media/burgerMenu.svg": "/Vocabulary/static/media/burgerMenu.45931fb5a996a72b7ab1ed1c424e0e1c.svg",
     "static/media/vocaryEye.svg": "/Vocabulary/static/media/vocaryEye.f74d07a6e879c1738843e41d7e55457d.svg",
-    "main.b2f5481e.css.map": "/Vocabulary/static/css/main.b2f5481e.css.map",
-    "main.06a6f16b.js.map": "/Vocabulary/static/js/main.06a6f16b.js.map"
+    "main.3d878bad.css.map": "/Vocabulary/static/css/main.3d878bad.css.map",
+    "main.863537ff.js.map": "/Vocabulary/static/js/main.863537ff.js.map"
   },
   "entrypoints": [
-    "static/css/main.b2f5481e.css",
-    "static/js/main.06a6f16b.js"
+    "static/css/main.3d878bad.css",
+    "static/js/main.863537ff.js"
   ]
 }
