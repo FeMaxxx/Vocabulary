@@ -2,15 +2,10 @@ import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { gsap } from "gsap";
 import { regexps } from "../../constants";
 import { BtnFillAnimation } from "../Buttons";
-import {
-  Form,
-  Label,
-  Input,
-  SubmitBtn,
-  ErrorMessage,
-} from "./RegisterForm.styled";
+import { Form, Label, Input, SubmitBtn, ErrorMessage } from "./AuthForm.styled";
+import { AuthProps } from "../../types/auth";
 
-export const RegisterForm: FC = () => {
+export const AuthForm: FC<AuthProps> = ({ forAuth }) => {
   const form = useRef(null);
   const submitBtn = useRef(null);
   const error = useRef(null);
@@ -157,7 +152,7 @@ export const RegisterForm: FC = () => {
       <ErrorMessage ref={error}>{errorMessage}</ErrorMessage>
 
       <SubmitBtn ref={submitBtn} type="submit">
-        Register
+        {forAuth === "register" ? "Register" : "Log-in"}
         <BtnFillAnimation />
       </SubmitBtn>
     </Form>

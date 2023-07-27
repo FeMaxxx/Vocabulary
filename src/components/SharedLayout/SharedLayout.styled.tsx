@@ -7,6 +7,9 @@ const { Logo: LogoI } = useSvg;
 
 export const Layout = styled.section`
   width: 100%;
+
+  background-image: url("../../images/background.png");
+  background-repeat: repeat;
 `;
 
 export const Header = styled.header`
