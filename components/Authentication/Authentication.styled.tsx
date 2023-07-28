@@ -17,7 +17,7 @@ export const VocaryHead = styled.div`
     border: 21px solid var(--primaryColor);
     border-radius: 100px;
 
-    top: 50%;
+    top: -150vh;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -29,19 +29,11 @@ const Eye =
 export const EyeLeft = styled(VocaryEye)`
   ${Eye}
   left: 53px;
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    display: none;
-  }
 `;
 
 export const EyeRight = styled(VocaryEye)`
   ${Eye}
   right: 53px;
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    display: none;
-  }
 `;
 
 export const Mouth = styled(VocaryMouth)`
@@ -53,10 +45,6 @@ export const Mouth = styled(VocaryMouth)`
   height: 46px;
 
   transform: translate(-50%, 0);
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    display: none;
-  }
 `;
 
 export const Fill = styled.div`
@@ -91,10 +79,10 @@ export const GoogleBtn = styled.button`
   }
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
+    opacity: 0;
     position: absolute;
     top: min(100vh - 250px, 570px);
-    left: calc(50% + 220px);
-    margin-top: 50px;
+    left: calc(50% + 230px);
 
     width: 90px;
     height: 90px;
