@@ -12,10 +12,12 @@ export const AuthForm: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
+  const [timeoutId, setTimeoutId] = useState<number | null>(null);
   const router = useRouter();
 
   useEffect(() => {
+    if (router.pathname === "/login") return;
+
     if (email === "") {
       setErrorMessage(null);
       return;
@@ -30,6 +32,8 @@ export const AuthForm: FC = () => {
   }, [email]);
 
   useEffect(() => {
+    if (router.pathname === "/login") return;
+
     if (password === "") {
       setErrorMessage(null);
       return;
@@ -64,6 +68,8 @@ export const AuthForm: FC = () => {
   }, [password]);
 
   useEffect(() => {
+    if (router.pathname === "/login") return;
+
     if (
       regexps.email.test(email) &&
       password.length >= 8 &&
@@ -113,6 +119,28 @@ export const AuthForm: FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (router.pathname === "/login") {
+      gsap.to(submitBtn.current, {
+        cursor: "pointer",
+        opacity: 1,
+        duration: 0.2,
+        zIndex: 10,
+        delay: 2,
+      });
+
+      return;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (timeoutId !== null) {
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [timeoutId]);
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
@@ -123,6 +151,47 @@ export const AuthForm: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (email === "" && password === "") {
+      setErrorMessage("Email and pasword is required filds");
+    } else if (email === "" && password !== "") {
+      setErrorMessage("Email is a required fild");
+    } else if (password === "" && email !== "") {
+      setErrorMessage("Password is a required fild");
+    }
+
+    if (email === "" || password === "") {
+      gsap.to(submitBtn.current, {
+        opacity: 0,
+        duration: 0.2,
+        zIndex: 1,
+        display: "none",
+      });
+      gsap.to(error.current, {
+        opacity: 1,
+        duration: 0.2,
+        zIndex: 10,
+      });
+
+      const id = setTimeout(() => {
+        gsap.to(submitBtn.current, {
+          display: "block",
+          opacity: 1,
+          duration: 0.2,
+          zIndex: 10,
+        });
+        gsap.to(error.current, {
+          opacity: 0,
+          duration: 0.2,
+          zIndex: 1,
+        });
+
+        setErrorMessage(null);
+      }, 2000);
+
+      setTimeoutId(id);
+
+      return;
+    }
 
     console.log(email, password);
   };
