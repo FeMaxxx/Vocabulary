@@ -12,7 +12,7 @@ export const AuthForm: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [timeoutId, setTimeoutId] = useState<number | null>(null);
+  const [timeoutController, setTimeoutController] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -134,12 +134,26 @@ export const AuthForm: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (timeoutId !== null) {
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-  }, [timeoutId]);
+    const timeoutID = setTimeout(() => {
+      gsap.to(submitBtn.current, {
+        display: "block",
+        opacity: 1,
+        duration: 0.2,
+        zIndex: 10,
+      });
+      gsap.to(error.current, {
+        opacity: 0,
+        duration: 0.2,
+        zIndex: 1,
+      });
+
+      setErrorMessage(null);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeoutID);
+    };
+  }, [timeoutController]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
@@ -172,23 +186,7 @@ export const AuthForm: FC = () => {
         zIndex: 10,
       });
 
-      const id = setTimeout(() => {
-        gsap.to(submitBtn.current, {
-          display: "block",
-          opacity: 1,
-          duration: 0.2,
-          zIndex: 10,
-        });
-        gsap.to(error.current, {
-          opacity: 0,
-          duration: 0.2,
-          zIndex: 1,
-        });
-
-        setErrorMessage(null);
-      }, 2000);
-
-      setTimeoutId(id);
+      setTimeoutController(timeoutController + 1);
 
       return;
     }
