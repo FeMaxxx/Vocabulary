@@ -1,23 +1,21 @@
-import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/router";
+import { FC, useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { gsap } from "gsap";
 import { regexps } from "../../constants";
 import { BtnFillAnimation } from "../Buttons";
-import { Form, Label, Input, SubmitBtn, ErrorMessage } from "./AuthForm.styled";
+import {
+  Form,
+  Label,
+  Input,
+  SubmitBtn,
+  ErrorMessage,
+} from "@/components/Authentication/AuthForm.styled";
 
-export const AuthForm: FC = () => {
-  const form = useRef(null);
-  const submitBtn = useRef(null);
-  const error = useRef(null);
+export const RegisterForm: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [timeoutController, setTimeoutController] = useState(0);
-  const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname === "/login") return;
-
     if (email === "") {
       setErrorMessage(null);
       return;
@@ -32,8 +30,6 @@ export const AuthForm: FC = () => {
   }, [email]);
 
   useEffect(() => {
-    if (router.pathname === "/login") return;
-
     if (password === "") {
       setErrorMessage(null);
       return;
@@ -68,32 +64,30 @@ export const AuthForm: FC = () => {
   }, [password]);
 
   useEffect(() => {
-    if (router.pathname === "/login") return;
-
     if (
       regexps.email.test(email) &&
       password.length >= 8 &&
       errorMessage === null
     ) {
-      gsap.to(submitBtn.current, {
+      gsap.to(".submitBtn", {
         cursor: "pointer",
         opacity: 1,
         duration: 0.2,
         zIndex: 10,
       });
-      gsap.to(error.current, {
+      gsap.to(".error", {
         opacity: 0,
         duration: 0.2,
         zIndex: 1,
       });
     } else {
-      gsap.to(submitBtn.current, {
+      gsap.to(".submitBtn", {
         cursor: "default",
         opacity: 0,
         duration: 0.2,
         zIndex: 1,
       });
-      gsap.to(error.current, {
+      gsap.to(".error", {
         opacity: 1,
         duration: 0.2,
         zIndex: 10,
@@ -104,7 +98,7 @@ export const AuthForm: FC = () => {
   useEffect(() => {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
-      gsap.to(form.current, {
+      gsap.to(".form", {
         duration: 0,
         display: "flex",
       });
@@ -112,48 +106,12 @@ export const AuthForm: FC = () => {
       return;
     }
 
-    gsap.to(form.current, {
+    gsap.to(".form", {
       duration: 0,
       display: "flex",
       delay: 1.4,
     });
   }, []);
-
-  useEffect(() => {
-    if (router.pathname === "/login") {
-      gsap.to(submitBtn.current, {
-        cursor: "pointer",
-        opacity: 1,
-        duration: 0.2,
-        zIndex: 10,
-        delay: 2,
-      });
-
-      return;
-    }
-  }, []);
-
-  useEffect(() => {
-    const timeoutID = setTimeout(() => {
-      gsap.to(submitBtn.current, {
-        display: "block",
-        opacity: 1,
-        duration: 0.2,
-        zIndex: 10,
-      });
-      gsap.to(error.current, {
-        opacity: 0,
-        duration: 0.2,
-        zIndex: 1,
-      });
-
-      setErrorMessage(null);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeoutID);
-    };
-  }, [timeoutController]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
@@ -165,37 +123,12 @@ export const AuthForm: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (email === "" && password === "") {
-      setErrorMessage("Email and pasword is required filds");
-    } else if (email === "" && password !== "") {
-      setErrorMessage("Email is a required fild");
-    } else if (password === "" && email !== "") {
-      setErrorMessage("Password is a required fild");
-    }
-
-    if (email === "" || password === "") {
-      gsap.to(submitBtn.current, {
-        opacity: 0,
-        duration: 0.2,
-        zIndex: 1,
-        display: "none",
-      });
-      gsap.to(error.current, {
-        opacity: 1,
-        duration: 0.2,
-        zIndex: 10,
-      });
-
-      setTimeoutController(timeoutController + 1);
-
-      return;
-    }
 
     console.log(email, password);
   };
 
   return (
-    <Form onSubmit={handleSubmit} ref={form}>
+    <Form onSubmit={handleSubmit} className="form">
       <Label>
         Email
         <Input
@@ -217,10 +150,10 @@ export const AuthForm: FC = () => {
         />
       </Label>
 
-      <ErrorMessage ref={error}>{errorMessage}</ErrorMessage>
+      <ErrorMessage className="error">{errorMessage}</ErrorMessage>
 
-      <SubmitBtn ref={submitBtn} type="submit">
-        {router.pathname === "/register" ? "Register" : "Log-in"}
+      <SubmitBtn className="submitBtn" type="submit">
+        Register
         <BtnFillAnimation />
       </SubmitBtn>
     </Form>

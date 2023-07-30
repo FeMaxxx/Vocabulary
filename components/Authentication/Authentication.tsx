@@ -1,6 +1,8 @@
-import { FC, useRef, useEffect } from "react";
-import { AuthForm } from "../AuthForm";
+import { FC, useEffect } from "react";
+import { RegisterForm } from "../RegisterForm";
+import { LoginForm } from "../LoginForm";
 import { gsap } from "gsap";
+import { useRouter } from "next/router";
 import { BtnFillAnimation } from "../../components/Buttons";
 import {
   VocaryHead,
@@ -13,6 +15,8 @@ import {
 } from "./Authentication.styled";
 
 export const Authentication: FC = () => {
+  const router = useRouter();
+
   useEffect(() => {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
@@ -62,7 +66,7 @@ export const Authentication: FC = () => {
         <Mouth className="mouth" />
       </VocaryHead>
 
-      <AuthForm />
+      {router.pathname === "/register" ? <RegisterForm /> : <LoginForm />}
 
       <GoogleBtn className="googleBtn">
         <GoogleIcon />
