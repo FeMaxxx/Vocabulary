@@ -1,13 +1,22 @@
 import { FC } from "react";
-import { Button, HomeIcon, InfoIcon } from "./ButtonIcon.styled";
+import {
+  Button,
+  HomeIcon,
+  InfoIcon,
+  RightArrowIcon,
+  BookIcon,
+  HeadSmileIcon,
+  PanIcon,
+} from "./ButtonIcon.styled";
 import { BtnFillAnimation } from "../BtnFillAnimation";
 import { useRouter } from "next/router";
 
 interface ButtonIconProps {
   icon: string;
-  fnc?: () => void;
+  fnc?: any;
   navigateTo?: string;
   isActive?: boolean;
+  maxSize?: number;
 }
 
 export const ButtonIcon: FC<ButtonIconProps> = ({
@@ -15,6 +24,7 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
   fnc,
   navigateTo,
   isActive,
+  maxSize,
 }) => {
   const router = useRouter();
   const onClick = () => {
@@ -27,9 +37,18 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
   };
 
   return (
-    <Button className={`${isActive ? "active" : "standart"}`} onClick={onClick}>
+    <Button
+      type="button"
+      style={{ maxWidth: `${maxSize}px`, maxHeight: `${maxSize}px` }}
+      className={`${isActive ? "active" : "standart"}`}
+      onClick={onClick}
+    >
       {icon === "home" && <HomeIcon />}
       {icon === "info" && <InfoIcon />}
+      {icon === "rightArrow" && <RightArrowIcon />}
+      {icon === "book" && <BookIcon />}
+      {icon === "headSmile" && <HeadSmileIcon />}
+      {icon === "pan" && <PanIcon />}
       <BtnFillAnimation />
     </Button>
   );

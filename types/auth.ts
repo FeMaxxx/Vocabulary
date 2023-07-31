@@ -1,3 +1,4 @@
-export interface AuthProps {
-  forAuth: "login" | "register";
+export interface Auth {
+  email: string;
+  password: string;
 }

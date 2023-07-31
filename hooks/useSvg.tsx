@@ -7,6 +7,13 @@ import VocaryInfoSmile from "../public/vocaryInfoSmile.svg";
 import VocaryEye from "../public/vocaryEye.svg";
 import VocaryMouth from "../public/vocaryMouth.svg";
 import Google from "../public/google.svg";
+import RightArrow from "../public/rightArrow.svg";
+import vocaryLoad from "../public/vocaryLoad.svg";
+
+import Book from "../public/book.svg";
+import HeadSmile from "../public/headSmile.svg";
+import Pan from "../public/pan.svg";
+import Logout from "../public/logout.svg";
 
 export const useSvg = {
   Logo,
@@ -18,4 +25,10 @@ export const useSvg = {
   VocaryEye,
   VocaryMouth,
   Google,
+  RightArrow,
+  vocaryLoad,
+  Book,
+  HeadSmile,
+  Pan,
+  Logout,
 };

@@ -2,18 +2,28 @@ import { FC, useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { gsap } from "gsap";
 import { regexps } from "../../constants";
 import { BtnFillAnimation } from "../Buttons";
+import { useGlobalState } from "@/globalState";
+import { VerificationModal } from "../Modals";
+import { Loader } from "../Loader";
 import {
   Form,
   Label,
   Input,
   SubmitBtn,
   ErrorMessage,
+  LoaderWrap,
 } from "@/components/Authentication/AuthForm.styled";
 
 export const RegisterForm: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const { register, loading, error, needVerifyEmail } = useGlobalState();
+
+  useEffect(() => {
+    setErrorMessage(error);
+  }, [error]);
 
   useEffect(() => {
     if (email === "") {
@@ -114,6 +124,7 @@ export const RegisterForm: FC = () => {
   }, []);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage(null);
     if (e.target.name === "email") {
       setEmail(e.target.value);
     } else {
@@ -121,41 +132,58 @@ export const RegisterForm: FC = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const el = document.querySelector(".submitBtn") as HTMLButtonElement;
 
-    console.log(email, password);
+    await register({ email, password });
+
+    el.setAttribute("disabled", "true");
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="form">
-      <Label>
-        Email
-        <Input
-          onChange={handleInput}
-          name="email"
-          type="text"
-          placeholder="vocary@gmail.com"
-          value={email}
-        />
-      </Label>
-      <Label>
-        Password
-        <Input
-          onChange={handleInput}
-          name="password"
-          type="text"
-          placeholder="password"
-          value={password}
-        />
-      </Label>
+    <>
+      <Form onSubmit={handleSubmit} className="form">
+        <Label>
+          Email
+          <Input
+            onChange={handleInput}
+            name="email"
+            type="text"
+            placeholder="vocary@gmail.com"
+            value={email}
+          />
+        </Label>
+        <Label>
+          Password
+          <Input
+            onChange={handleInput}
+            name="password"
+            type="text"
+            placeholder="password"
+            value={password}
+          />
+        </Label>
 
-      <ErrorMessage className="error">{errorMessage}</ErrorMessage>
+        {loading && !needVerifyEmail && (
+          <LoaderWrap>
+            <Loader size={70} />
+          </LoaderWrap>
+        )}
 
-      <SubmitBtn className="submitBtn" type="submit">
-        Register
-        <BtnFillAnimation />
-      </SubmitBtn>
-    </Form>
+        {!loading && (
+          <>
+            <ErrorMessage className="error">{errorMessage}</ErrorMessage>
+
+            <SubmitBtn className="submitBtn" type="submit">
+              Register
+              <BtnFillAnimation />
+            </SubmitBtn>
+          </>
+        )}
+      </Form>
+
+      <VerificationModal isOpen={needVerifyEmail} />
+    </>
   );
 };

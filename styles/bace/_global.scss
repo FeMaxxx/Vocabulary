@@ -8,35 +8,26 @@ body {
   font-weight: 700;
   line-height: 1.25;
 
+  scrollbar-gutter: stable;
   background-color: #1f2123;
   color: var(--textColor);
 
   margin: 0;
 
-  background-image: url("../../public/beckgroundMobile@1x.png");
+  background-image: image-set(
+    url("../../public/beckgroundMobile@1x.png") type("image/png") 1x,
+    url("../../public/beckgroundMobile@2x.png") type("image/png") 2x
+  );
   background-repeat: repeat;
   background-position: center;
   background-size: 768px;
 
-  @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
-    screen and (min-resolution: 192dpi) and (max-width: 767px),
-    screen and (min-resolution: 2dppx) and (max-width: 767px) {
-    & {
-      background-image: url("../../public/beckgroundMobile@2x.png");
-    }
-  }
-
   @media screen and (min-width: 768px) {
+    background-image: image-set(
+      url("../../public/beckgroundDecktop@1x.png") type("image/png") 1x,
+      url("../../public/beckgroundDecktop@2x.png") type("image/png") 2x
+    );
     background-size: 1800px;
-    background-image: url("../../public/beckgroundDecktop@1x.png");
-  }
-
-  @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
-    screen and (min-resolution: 192dpi) and (min-width: 768px),
-    screen and (min-resolution: 2dppx) and (min-width: 768px) {
-    & {
-      background-image: url("../../public/beckgroundDecktop@2x.png");
-    }
   }
 }
 
@@ -59,6 +50,7 @@ input {
   padding: 0px;
   color: inherit;
   font-family: inherit;
+  font-weight: inherit;
 }
 
 li,

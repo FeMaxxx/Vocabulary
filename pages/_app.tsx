@@ -13,9 +13,13 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
   if (router.pathname !== "/404") {
     return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <>
+        <Layout>
+          <Component {...pageProps} />
+
+          <div id="modalRoot"></div>
+        </Layout>
+      </>
     );
   }
 
