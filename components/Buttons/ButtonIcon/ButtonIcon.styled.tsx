@@ -28,6 +28,11 @@ export const Button = styled.button`
     top: 0;
   }
 
+  & svg {
+    fill: var(--primaryColor);
+    transition: fill var(--animation);
+  }
+
   &.active {
     & svg {
       fill: var(--whiteColor);
@@ -52,8 +57,6 @@ export const Button = styled.button`
 export const InfoIcon = styled(Info)`
   width: 10px;
   height: 22px;
-  fill: var(--primaryColor);
-  transition: fill var(--animation);
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 12px;
@@ -64,8 +67,6 @@ export const InfoIcon = styled(Info)`
 export const HomeIcon = styled(Home)`
   width: 22px;
   height: 22px;
-  fill: var(--primaryColor);
-  transition: fill var(--animation);
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 28px;
@@ -77,7 +78,6 @@ export const RightArrowIcon = styled(RightArrow)`
   width: 24px;
   height: 20px;
   fill: var(--greenColor);
-  transition: fill var(--animation);
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 28px;
@@ -85,11 +85,9 @@ export const RightArrowIcon = styled(RightArrow)`
   }
 `;
 
-export const HeadSmileIcon = styled(RightArrow)`
+export const HeadSmileIcon = styled(HeadSmile)`
   width: 24px;
   height: 24px;
-  fill: var(--greenColor);
-  transition: fill var(--animation);
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 28px;
@@ -97,11 +95,9 @@ export const HeadSmileIcon = styled(RightArrow)`
   }
 `;
 
-export const BookIcon = styled(RightArrow)`
+export const BookIcon = styled(Book)`
   width: 21px;
   height: 24px;
-  fill: var(--greenColor);
-  transition: fill var(--animation);
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 25px;
@@ -109,11 +105,9 @@ export const BookIcon = styled(RightArrow)`
   }
 `;
 
-export const PanIcon = styled(RightArrow)`
+export const PanIcon = styled(Pan)`
   width: 22px;
   height: 24px;
-  fill: var(--greenColor);
-  transition: fill var(--animation);
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 26px;

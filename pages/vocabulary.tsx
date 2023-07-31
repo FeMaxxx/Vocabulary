@@ -1,17 +1,17 @@
 import { FC, useEffect } from "react";
-import LoginPage from "@/components/Pages/Login";
+import VocabularyPage from "@/components/Pages/Vocabulary";
 import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
 
-const Login: FC = () => {
+const Vocabulary: FC = () => {
   const { isLogedIn } = useGlobalState();
   const router = useRouter();
 
   useEffect(() => {
-    if (isLogedIn) router.push("/");
+    if (!isLogedIn) router.push("/login");
   }, []);
 
-  return <LoginPage />;
+  return <VocabularyPage />;
 };
 
-export default Login;
+export default Vocabulary;
