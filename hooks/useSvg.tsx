@@ -12,7 +12,8 @@ import vocaryLoad from "../public/vocaryLoad.svg";
 import Book from "../public/book.svg";
 import HeadSmile from "../public/headSmile.svg";
 import Pan from "../public/pan.svg";
-import Logout from "../public/logout.svg";
+import LogoutFirstDetail from "../public/logoutFirstDetail.svg";
+import LogoutSecondDetail from "../public/logoutSecondDetail.svg";
 
 export const useSvg = {
   Logo,
@@ -29,5 +30,6 @@ export const useSvg = {
   Book,
   HeadSmile,
   Pan,
-  Logout,
+  LogoutFirstDetail,
+  LogoutSecondDetail,
 };

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useSvg } from "@/hooks/useSvg";
 
-const { BurgerMenu, Logout } = useSvg;
+const { BurgerMenu, LogoutFirstDetail, LogoutSecondDetail } = useSvg;
 
 export const Nav = styled.nav`
   display: none;
@@ -18,20 +18,41 @@ export const Nav = styled.nav`
 `;
 
 export const LogoutBtn = styled.button`
+  position: relative;
   background: none;
+  width: 38px;
+  height: 48px;
+
+  & svg {
+    position: absolute;
+    top: 50%;
+
+    transform: translate(0, -50%);
+    fill: var(--primaryColor);
+    transition: fill var(--animation), left var(--animation);
+  }
 
   &:hover svg,
   &:focus svg {
     fill: var(--whiteColor);
   }
+
+  &:hover svg:nth-of-type(2),
+  &:focus svg:nth-of-type(2) {
+    left: 13px;
+  }
 `;
 
-export const LogoutIcon = styled(Logout)`
-  fill: var(--primaryColor);
-  width: 25px;
-  height: 30px;
+export const LogoutFirst = styled(LogoutFirstDetail)`
+  left: 0px;
+  width: 17px;
+  height: 32px;
+`;
 
-  transition: fill var(--animation);
+export const LogoutSecond = styled(LogoutSecondDetail)`
+  left: 6px;
+  width: 21px;
+  height: 16px;
 `;
 
 export const BurgerBtn = styled.button`

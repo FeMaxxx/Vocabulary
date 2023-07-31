@@ -2,7 +2,8 @@ import { FC } from "react";
 import {
   Nav,
   LogoutBtn,
-  LogoutIcon,
+  LogoutFirst,
+  LogoutSecond,
   BurgerBtn,
   BurgerBtnIcon,
 } from "./Navigation.styled";
@@ -17,7 +18,7 @@ export const Navigation: FC = () => {
   return (
     <>
       <Nav>
-        {!isLogedIn ? (
+        {isLogedIn ? (
           <>
             <ButtonIcon
               isActive={router.pathname === "/"}
@@ -58,7 +59,8 @@ export const Navigation: FC = () => {
               navigateTo="/profile"
             />
             <LogoutBtn>
-              <LogoutIcon />
+              <LogoutFirst />
+              <LogoutSecond />
             </LogoutBtn>
           </>
         )}
