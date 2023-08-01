@@ -22,6 +22,7 @@ export const RegisterForm: FC = () => {
   const { register, loading, error, needVerifyEmail } = useGlobalState();
 
   useEffect(() => {
+    if (needVerifyEmail) return;
     setErrorMessage(error);
   }, [error]);
 
@@ -136,7 +137,7 @@ export const RegisterForm: FC = () => {
     e.preventDefault();
     const el = document.querySelector(".submitBtn") as HTMLButtonElement;
 
-    await register({ email, password });
+    await register({ email: email.trim(), password: password.trim() });
 
     el.setAttribute("disabled", "true");
   };

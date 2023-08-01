@@ -1,10 +1,9 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { ModalProps } from "@/types/modals";
 import { Portal } from "../Portal";
 import { ButtonIcon } from "@/components/Buttons";
 import { Loader } from "@/components/Loader";
 import { useGlobalState } from "@/globalState";
-import { useRouter } from "next/router";
 import {
   BackDrop,
   Modal,
@@ -12,21 +11,27 @@ import {
   Form,
   Input,
   LoaderWrap,
+  ErrorMessage,
 } from "./VerificationModal.styled";
 
 export const VerificationModal: FC<ModalProps> = ({ isOpen }) => {
-  const { loading, verifyEmail } = useGlobalState();
-  const router = useRouter();
+  const { loading, verifyEmail, error } = useGlobalState();
   const [code, setCode] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    setErrorMessage(error);
+  }, [error]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setCode(e.target.value);
   };
 
-  const handleSubmit = async () => {
-    await verifyEmail(code);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+    if (code === "") return;
 
-    router.push("/");
+    verifyEmail(code.trim());
   };
 
   return (
@@ -41,12 +46,16 @@ export const VerificationModal: FC<ModalProps> = ({ isOpen }) => {
         {!loading && (
           <Modal>
             <>
-              <Text>
-                A verification code was sent to your e-mail, please enter it
-                here.
-              </Text>
+              {errorMessage ? (
+                <ErrorMessage>{errorMessage}</ErrorMessage>
+              ) : (
+                <Text>
+                  A verification code was sent to your e-mail, please enter it
+                  here.
+                </Text>
+              )}
 
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <Input
                   className="veryfyInput"
                   onChange={handleInput}

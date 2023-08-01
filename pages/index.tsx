@@ -6,3 +6,22 @@ const Home: FC = () => {
 };
 
 export default Home;
+
+// export async function getServerSideProps({ req, res }: any) {
+//   const accessTokenValue = req.cookies.accessToken;
+//   try {
+//     const response: any = await instance.get(`/auth/current`, {
+//       headers: {
+//         Authorization: `Bearer ${accessTokenValue}`,
+//       },
+//     });
+
+//     return {
+//       props: { email: response.data.user.email },
+//     };
+//   } catch (error) {
+//     return {
+//       props: { email: null },
+//     };
+//   }
+// }

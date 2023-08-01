@@ -1,12 +1,12 @@
-import { FC } from "react";
 import { create } from "zustand";
 import { instance } from "@/api/config";
 import { Auth } from "@/types/auth";
 
 interface State {
   userEmail: string | null;
-  isLogedIn: boolean;
+  isLogedIn: boolean | null;
   loading: boolean;
+  siteLoading: boolean;
   error: string | null;
   needVerifyEmail: boolean;
 
@@ -14,12 +14,15 @@ interface State {
   verifyEmail: (verificationCode: string) => void;
   login: (userData: Auth) => void;
   getCurrentUser: () => void;
+  logout: () => void;
+  clearError: () => void;
 }
 
 const globalState = create<State>()(set => ({
   userEmail: null,
-  isLogedIn: false,
+  isLogedIn: null,
   loading: false,
+  siteLoading: true,
   error: null,
   needVerifyEmail: false,
 
@@ -72,7 +75,8 @@ const globalState = create<State>()(set => ({
       set({
         loading: false,
         isLogedIn: false,
-        error: message,
+        error: error.request.status === 409 ? null : message,
+        needVerifyEmail: error.request.status === 409,
       });
     }
   },
@@ -82,14 +86,34 @@ const globalState = create<State>()(set => ({
     try {
       const response = await instance.get(`auth/current`);
 
-      set({ loading: false, isLogedIn: true, userEmail: response.data.email });
+      set({
+        loading: false,
+        isLogedIn: true,
+        userEmail: response.data.email,
+        siteLoading: false,
+      });
     } catch (error) {
       set({
         loading: false,
         isLogedIn: false,
-        error: (error as Error).message,
+        siteLoading: false,
       });
     }
+  },
+
+  logout: async () => {
+    set({
+      isLogedIn: false,
+      error: null,
+      userEmail: null,
+      loading: false,
+      needVerifyEmail: false,
+    });
+    await instance.post(`auth/logout`);
+  },
+
+  clearError: () => {
+    set({ error: null });
   },
 }));
 
@@ -97,6 +121,7 @@ export const useGlobalState = () => {
   const userEmail = globalState(state => state.userEmail);
   const isLogedIn = globalState(state => state.isLogedIn);
   const loading = globalState(state => state.loading);
+  const siteLoading = globalState(state => state.siteLoading);
   const error = globalState(state => state.error);
   const needVerifyEmail = globalState(state => state.needVerifyEmail);
 
@@ -104,11 +129,14 @@ export const useGlobalState = () => {
   const login = globalState(state => state.login);
   const verifyEmail = globalState(state => state.verifyEmail);
   const getCurrentUser = globalState(state => state.getCurrentUser);
+  const logout = globalState(state => state.logout);
+  const clearError = globalState(state => state.clearError);
 
   return {
     userEmail,
     isLogedIn,
     loading,
+    siteLoading,
     error,
     needVerifyEmail,
 
@@ -116,5 +144,7 @@ export const useGlobalState = () => {
     login,
     verifyEmail,
     getCurrentUser,
+    logout,
+    clearError,
   };
 };

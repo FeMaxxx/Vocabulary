@@ -13,12 +13,16 @@ import { useGlobalState } from "@/globalState";
 
 export const Navigation: FC = () => {
   const router = useRouter();
-  const { isLogedIn } = useGlobalState();
+  const { isLogedIn, logout } = useGlobalState();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <>
       <Nav>
-        {isLogedIn ? (
+        {isLogedIn === false && (
           <>
             <ButtonIcon
               isActive={router.pathname === "/"}
@@ -41,7 +45,9 @@ export const Navigation: FC = () => {
               navigateTo="/login"
             />
           </>
-        ) : (
+        )}
+
+        {isLogedIn === true && (
           <>
             <ButtonIcon
               isActive={router.pathname === "/learning"}
@@ -58,7 +64,7 @@ export const Navigation: FC = () => {
               icon="headSmile"
               navigateTo="/profile"
             />
-            <LogoutBtn>
+            <LogoutBtn onClick={handleLogout}>
               <LogoutFirst />
               <LogoutSecond />
             </LogoutBtn>

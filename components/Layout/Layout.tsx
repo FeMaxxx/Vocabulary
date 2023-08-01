@@ -1,8 +1,10 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import localFont from "next/font/local";
 import { Main } from "@/components/Main";
 import { Header } from "../Header";
-import { LayoutContainer } from "./Layout.styled";
+import { useGlobalState } from "@/globalState";
+import { Loader } from "../Loader";
+import { LayoutContainer, LoaderWrap } from "./Layout.styled";
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,6 +26,19 @@ const myFont = localFont({
 });
 
 const Layout: FC<LayoutProps> = ({ children }) => {
+  const { siteLoading, getCurrentUser, isLogedIn } = useGlobalState();
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
+  if (siteLoading || isLogedIn === null)
+    return (
+      <LoaderWrap>
+        <Loader size={200} />
+      </LoaderWrap>
+    );
+
   return (
     <LayoutContainer className={myFont.className}>
       <Header />

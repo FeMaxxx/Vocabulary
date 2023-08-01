@@ -81,3 +81,7 @@ export const LoaderWrap = styled.div`
 
   height: 100svh;
 `;
+
+export const ErrorMessage = styled(Text)`
+  color: var(--redColor);
+`;

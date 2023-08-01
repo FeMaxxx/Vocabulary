@@ -7,9 +7,10 @@ const Vocabulary: FC = () => {
   const { isLogedIn } = useGlobalState();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isLogedIn) router.push("/login");
-  }, []);
+  if (isLogedIn === false) {
+    router.push("/login");
+    return null;
+  }
 
   return <VocabularyPage />;
 };

@@ -19,8 +19,8 @@ body {
     url("../../public/beckgroundMobile@2x.png") type("image/png") 2x
   );
   background-repeat: repeat;
-  background-position: center;
   background-size: 768px;
+  background-position: top;
 
   @media screen and (min-width: 768px) {
     background-image: image-set(

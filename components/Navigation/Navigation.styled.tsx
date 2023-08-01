@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useSvg } from "@/hooks/useSvg";
+import { mediaSizes } from "@/constants";
 
 const { BurgerMenu, LogoutFirstDetail, LogoutSecondDetail } = useSvg;
 
@@ -45,14 +46,24 @@ export const LogoutBtn = styled.button`
 
 export const LogoutFirst = styled(LogoutFirstDetail)`
   left: 0px;
-  width: 17px;
-  height: 32px;
+  width: 13px;
+  height: 28px;
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    width: 17px;
+    height: 32px;
+  }
 `;
 
 export const LogoutSecond = styled(LogoutSecondDetail)`
   left: 6px;
-  width: 21px;
-  height: 16px;
+  width: 17px;
+  height: 12px;
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    width: 21px;
+    height: 16px;
+  }
 `;
 
 export const BurgerBtn = styled.button`
