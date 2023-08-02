@@ -117,7 +117,6 @@ export const LoginForm: FC = () => {
         opacity: 0,
         duration: 0.2,
         zIndex: 1,
-        display: "none",
       });
       gsap.to(".error", {
         opacity: 1,

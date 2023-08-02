@@ -64,7 +64,7 @@ export const Input = styled.input`
   color: var(--textColor);
 
   &::placeholder {
-    color: rgba(255, 183, 75, 0.2);
+    color: rgba(255, 183, 75, 0.3);
   }
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
@@ -73,6 +73,10 @@ export const Input = styled.input`
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     padding: 0px 50px;
+
+    &::placeholder {
+      color: rgba(255, 183, 75, 0.2);
+    }
   }
 `;
 
