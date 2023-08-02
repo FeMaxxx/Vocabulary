@@ -7,7 +7,9 @@ interface State {
   isLogedIn: boolean | null;
   loading: boolean;
   siteLoading: boolean;
-  error: string | null;
+  registerError: string | null;
+  loginError: string | null;
+  verifyError: string | null;
   needVerifyEmail: boolean;
 
   register: (userData: Auth) => void;
@@ -23,11 +25,13 @@ const globalState = create<State>()(set => ({
   isLogedIn: null,
   loading: false,
   siteLoading: true,
-  error: null,
+  registerError: null,
+  loginError: null,
+  verifyError: null,
   needVerifyEmail: false,
 
   register: async userData => {
-    set({ loading: true, error: null });
+    set({ loading: true, registerError: null });
     try {
       await instance.post(`auth/register`, userData);
 
@@ -36,13 +40,39 @@ const globalState = create<State>()(set => ({
       const { message } = JSON.parse(error.request.response);
       set({
         loading: false,
-        error: message,
+        registerError: message,
+      });
+    }
+  },
+
+  login: async userData => {
+    set({ loading: true, loginError: null });
+    try {
+      const response = await instance.post(`auth/login`, userData);
+      set({ loading: false, isLogedIn: true, userEmail: response.data.email });
+    } catch (error: any) {
+      if (error.code === "ERR_NETWORK") {
+        set({
+          loading: false,
+          isLogedIn: false,
+          loginError: "Network error",
+        });
+
+        return;
+      }
+
+      set({
+        loading: false,
+        isLogedIn: false,
+        loginError:
+          error.request.status === 409 ? null : "Email or password invalid",
+        needVerifyEmail: error.request.status === 409,
       });
     }
   },
 
   verifyEmail: async verificationCode => {
-    set({ loading: true, error: null });
+    set({ loading: true, verifyError: null });
     try {
       const response = await instance.post(
         `auth/verifyEmail/${verificationCode}`
@@ -55,34 +85,27 @@ const globalState = create<State>()(set => ({
         userEmail: response.data.email,
       });
     } catch (error: any) {
+      if (error.code === "ERR_NETWORK") {
+        set({
+          loading: false,
+          isLogedIn: false,
+          verifyError: "Network error",
+        });
+
+        return;
+      }
+
       const { message } = JSON.parse(error.request.response);
       set({
         loading: false,
         isLogedIn: false,
-        error: message,
-      });
-    }
-  },
-
-  login: async userData => {
-    set({ loading: true, error: null });
-    try {
-      const response = await instance.post(`auth/login`, userData);
-
-      set({ loading: false, isLogedIn: true, userEmail: response.data.email });
-    } catch (error: any) {
-      const { message } = JSON.parse(error.request.response);
-      set({
-        loading: false,
-        isLogedIn: false,
-        error: error.request.status === 409 ? null : message,
-        needVerifyEmail: error.request.status === 409,
+        verifyError: message,
       });
     }
   },
 
   getCurrentUser: async () => {
-    set({ loading: true, error: null });
+    set({ siteLoading: true });
     try {
       const response = await instance.get(`auth/current`);
 
@@ -92,7 +115,7 @@ const globalState = create<State>()(set => ({
         userEmail: response.data.email,
         siteLoading: false,
       });
-    } catch (error) {
+    } catch {
       set({
         loading: false,
         isLogedIn: false,
@@ -104,7 +127,6 @@ const globalState = create<State>()(set => ({
   logout: async () => {
     set({
       isLogedIn: false,
-      error: null,
       userEmail: null,
       loading: false,
       needVerifyEmail: false,
@@ -112,8 +134,12 @@ const globalState = create<State>()(set => ({
     await instance.post(`auth/logout`);
   },
 
-  clearError: () => {
-    set({ error: null });
+  clearError: async () => {
+    set({
+      registerError: null,
+      loginError: null,
+      verifyError: null,
+    });
   },
 }));
 
@@ -122,7 +148,9 @@ export const useGlobalState = () => {
   const isLogedIn = globalState(state => state.isLogedIn);
   const loading = globalState(state => state.loading);
   const siteLoading = globalState(state => state.siteLoading);
-  const error = globalState(state => state.error);
+  const registerError = globalState(state => state.registerError);
+  const loginError = globalState(state => state.loginError);
+  const verifyError = globalState(state => state.verifyError);
   const needVerifyEmail = globalState(state => state.needVerifyEmail);
 
   const register = globalState(state => state.register);
@@ -137,7 +165,9 @@ export const useGlobalState = () => {
     isLogedIn,
     loading,
     siteLoading,
-    error,
+    registerError,
+    loginError,
+    verifyError,
     needVerifyEmail,
 
     register,

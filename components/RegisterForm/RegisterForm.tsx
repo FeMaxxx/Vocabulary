@@ -19,12 +19,13 @@ export const RegisterForm: FC = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const { register, loading, error, needVerifyEmail } = useGlobalState();
+  const { register, loading, registerError, needVerifyEmail } =
+    useGlobalState();
 
   useEffect(() => {
     if (needVerifyEmail) return;
-    setErrorMessage(error);
-  }, [error]);
+    setErrorMessage(registerError);
+  }, [registerError]);
 
   useEffect(() => {
     if (email === "") {

@@ -19,12 +19,10 @@ export const LoginForm: FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [timeoutController, setTimeoutController] = useState(0);
 
-  const { login, loading, error, needVerifyEmail, clearError } =
+  const { login, loading, loginError, needVerifyEmail, clearError } =
     useGlobalState();
 
   useEffect(() => {
-    clearError();
-
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
       gsap.to(".submitBtn", {
@@ -53,7 +51,6 @@ export const LoginForm: FC = () => {
   useEffect(() => {
     const timeoutID = setTimeout(() => {
       gsap.to(".submitBtn", {
-        display: "block",
         opacity: 1,
         duration: 0.2,
         zIndex: 10,
@@ -73,13 +70,12 @@ export const LoginForm: FC = () => {
   }, [timeoutController]);
 
   useEffect(() => {
-    if (loading || needVerifyEmail) return;
+    if (loading || needVerifyEmail || errorMessage === loginError) return;
 
     gsap.to(".submitBtn", {
       opacity: 0,
       duration: 0.2,
       zIndex: 1,
-      display: "none",
     });
     gsap.to(".error", {
       opacity: 1,
@@ -87,9 +83,15 @@ export const LoginForm: FC = () => {
       zIndex: 10,
     });
 
-    setErrorMessage(error);
+    setErrorMessage(loginError);
     setTimeoutController(timeoutController + 1);
-  }, [error]);
+  }, [loginError]);
+
+  useEffect(() => {
+    return () => {
+      clearError();
+    };
+  }, []);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
@@ -101,6 +103,7 @@ export const LoginForm: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (errorMessage) return;
     if (email === "" && password === "") {
       setErrorMessage("Email and pasword is required filds");
     } else if (email === "" && password !== "") {
@@ -156,7 +159,7 @@ export const LoginForm: FC = () => {
 
         {loading && !needVerifyEmail && (
           <LoaderWrap>
-            <Loader size={70} />
+            <Loader size={50} />
           </LoaderWrap>
         )}
 

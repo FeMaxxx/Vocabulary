@@ -56,7 +56,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  font-size: 18px;
+  font-size: 16px;
   background: none;
   padding: 0px 3vw;
   height: 50px;
@@ -65,6 +65,10 @@ export const Input = styled.input`
 
   &::placeholder {
     color: rgba(255, 183, 75, 0.2);
+  }
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    font-size: 18px;
   }
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
@@ -145,7 +149,23 @@ export const ErrorMessage = styled.div`
 export const LoaderWrap = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
+  align-items: end;
+  height: 100px;
   width: 100%;
+
+  & svg {
+    margin: 0;
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    height: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+
+    & svg {
+      margin: 8px;
+      width: 70px !important;
+      height: 70px !important;
+    }
+  }
 `;

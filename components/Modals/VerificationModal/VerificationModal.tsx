@@ -15,13 +15,14 @@ import {
 } from "./VerificationModal.styled";
 
 export const VerificationModal: FC<ModalProps> = ({ isOpen }) => {
-  const { loading, verifyEmail, error } = useGlobalState();
   const [code, setCode] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const { loading, verifyEmail, verifyError } = useGlobalState();
+
   useEffect(() => {
-    setErrorMessage(error);
-  }, [error]);
+    setErrorMessage(verifyError);
+  }, [verifyError]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setCode(e.target.value);
