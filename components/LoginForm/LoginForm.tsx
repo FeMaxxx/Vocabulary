@@ -150,7 +150,7 @@ export const LoginForm: FC = () => {
           <Input
             onChange={handleInput}
             name="password"
-            type="text"
+            type="password"
             placeholder="password"
             value={password}
           />

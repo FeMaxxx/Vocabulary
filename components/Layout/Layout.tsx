@@ -42,6 +42,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <LayoutContainer className={myFont.className}>
       <Header />
+
       <Main>{children}</Main>
     </LayoutContainer>
   );

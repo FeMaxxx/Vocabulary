@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Layout from "@/components/Layout";
 import "@/styles/index.scss";
-import { useRouter } from "next/router";
 
 interface AppProps {
   Component: React.ComponentType;
@@ -9,21 +8,13 @@ interface AppProps {
 }
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  const router = useRouter();
+  return (
+    <Layout>
+      <Component {...pageProps} />
 
-  if (router.pathname !== "/404") {
-    return (
-      <>
-        <Layout>
-          <Component {...pageProps} />
-
-          <div id="modalRoot"></div>
-        </Layout>
-      </>
-    );
-  }
-
-  return <Component {...pageProps} />;
+      <div id="modalRoot"></div>
+    </Layout>
+  );
 };
 
 export default App;

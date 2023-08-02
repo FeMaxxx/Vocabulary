@@ -60,7 +60,7 @@ export const VerificationModal: FC<ModalProps> = ({ isOpen }) => {
                 <Input
                   className="veryfyInput"
                   onChange={handleInput}
-                  type="password"
+                  type="text"
                   placeholder="verification code"
                   value={code}
                 />

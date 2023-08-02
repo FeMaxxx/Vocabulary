@@ -110,14 +110,12 @@ const globalState = create<State>()(set => ({
       const response = await instance.get(`auth/current`);
 
       set({
-        loading: false,
         isLogedIn: true,
         userEmail: response.data.email,
         siteLoading: false,
       });
     } catch {
       set({
-        loading: false,
         isLogedIn: false,
         siteLoading: false,
       });
