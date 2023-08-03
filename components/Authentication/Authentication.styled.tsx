@@ -52,7 +52,7 @@ export const Fill = styled.div`
   height: 100%;
 `;
 
-export const GoogleBtn = styled.button`
+export const GoogleBtn = styled.a`
   position: relative;
   overflow: hidden;
   display: flex;

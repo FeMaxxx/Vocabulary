@@ -68,7 +68,10 @@ export const Authentication: FC = () => {
 
       {router.pathname === "/register" ? <RegisterForm /> : <LoginForm />}
 
-      <GoogleBtn className="googleBtn">
+      <GoogleBtn
+        href={`${process.env.NEXT_PUBLIC_BASE_API_URL}auth/google`}
+        className="googleBtn"
+      >
         <GoogleIcon />
         <BtnFillAnimation />
       </GoogleBtn>
