@@ -1,0 +1,1 @@
+export { LearnWordsContainer } from "./LearnWordsContainer";

@@ -16,7 +16,6 @@ interface ButtonIconProps {
   fnc?: any;
   navigateTo?: string;
   isActive?: boolean;
-  maxSize?: number;
 }
 
 export const ButtonIcon: FC<ButtonIconProps> = ({
@@ -24,7 +23,6 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
   fnc,
   navigateTo,
   isActive,
-  maxSize,
 }) => {
   const router = useRouter();
   const onClick = () => {
@@ -39,7 +37,6 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
   return (
     <Button
       type="button"
-      style={{ maxWidth: `${maxSize}px`, maxHeight: `${maxSize}px` }}
       className={`${isActive ? "active" : "standart"}`}
       onClick={onClick}
     >
