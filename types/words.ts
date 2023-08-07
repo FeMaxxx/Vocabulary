@@ -16,3 +16,10 @@ export interface WordsI {
   user: string;
   vocabulary: VocabularyWordI[];
 }
+
+export interface MoveWordI {
+  id: string;
+  moveFrom: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
+  moveTo: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
+  canByConfirmed: Date;
+}

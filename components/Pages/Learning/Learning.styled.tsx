@@ -3,19 +3,12 @@ import { mediaSizes } from "@/constants";
 
 export const Container = styled.section`
   position: relative;
-  overflow: hidden;
   padding-top: 30px;
-
-  @media screen and (min-width: ${mediaSizes.mobile}) {
-  }
+  padding-bottom: 30px;
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     padding-top: 50px;
-    height: clamp(450px, 100vh - 60px, 800px);
-  }
-
-  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
-    height: clamp(450px, 100vh - 80px, 800px);
+    padding-bottom: 50px;
   }
 `;
 
@@ -29,20 +22,60 @@ export const LvlButtonsContainer = styled.div`
 
   color: var(--primaryColor);
 
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-  }
-
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     display: none;
   }
 `;
 
 export const LvlButton = styled.button`
+  position: relative;
   width: 60px;
   height: 30px;
+  overflow: hidden;
 
   font-size: 18px;
   background: none;
   border: 2px solid var(--primaryColor);
   border-radius: 10px;
+
+  transition: color var(--animation);
+
+  &.active {
+    color: var(--textColor);
+
+    & div,
+    & div {
+      top: 0;
+    }
+  }
+
+  &:hover div,
+  &:focus div {
+    top: 0;
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--textColor);
+  }
+`;
+
+export const LearnContainersWrap = styled.div`
+  margin-top: 30px;
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: start;
+    margin-top: 50px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.middleDesktop}) {
+    gap: 30px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.largeDesktop}) {
+    gap: 50px;
+  }
 `;

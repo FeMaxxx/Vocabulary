@@ -4,6 +4,7 @@ import { useGlobalState } from "@/globalState";
 import { useWordsState } from "@/wordsState/wordsState";
 import { useRouter } from "next/router";
 import { instance } from "@/api/config";
+import Head from "next/head";
 
 const Learning: FC = (data: any) => {
   const { isLogedIn } = useGlobalState();
@@ -11,7 +12,7 @@ const Learning: FC = (data: any) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (data) setWords(data.data[0]);
+    if (data.data) setWords(data.data[0]);
   }, []);
 
   if (isLogedIn === false) {
@@ -19,7 +20,14 @@ const Learning: FC = (data: any) => {
     return null;
   }
 
-  return <LearningPage />;
+  return (
+    <>
+      <Head>
+        <title>Lerning</title>
+      </Head>
+      <LearningPage />
+    </>
+  );
 };
 
 export default Learning;

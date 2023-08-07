@@ -1,12 +1,41 @@
-import { FC, useState, MouseEvent } from "react";
+import { FC, useState, MouseEvent, useEffect } from "react";
 import { AddWordForm } from "@/components/AddWordForm";
 import { LearnWordsContainer } from "@/components/LearnWordsContainer";
 import { useWordsState } from "@/wordsState/wordsState";
-import { Container, LvlButtonsContainer, LvlButton } from "./Learning.styled";
+import throttle from "lodash.throttle";
+import { BtnFillAnimation } from "@/components/Buttons";
+import {
+  Container,
+  LvlButtonsContainer,
+  LvlButton,
+  LearnContainersWrap,
+} from "./Learning.styled";
 
 const Learning: FC = () => {
-  const [wordsContainer, setWordsContainer] = useState(1);
+  const screenWidth = window.innerWidth;
+
+  const [wordsContainer, setWordsContainer] = useState<number | "all">(
+    screenWidth > 1023 ? "all" : 1
+  );
   const { words } = useWordsState();
+
+  const handleWindowResize = () => {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth > 1023) {
+      setWordsContainer("all");
+    } else {
+      setWordsContainer(1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", throttle(handleWindowResize, 300));
+
+    return () => {
+      window.removeEventListener("resize", throttle(handleWindowResize, 300));
+    };
+  }, []);
 
   const handleLvlButton = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.name === "1") {
@@ -23,28 +52,54 @@ const Learning: FC = () => {
       <AddWordForm />
 
       <LvlButtonsContainer>
-        <LvlButton name="1" onClick={handleLvlButton}>
+        <LvlButton
+          className={wordsContainer === 1 ? "active" : ""}
+          name="1"
+          onClick={handleLvlButton}
+        >
           1lvl
+          <BtnFillAnimation />
         </LvlButton>
-        <LvlButton name="2" onClick={handleLvlButton}>
+        <LvlButton
+          className={wordsContainer === 2 ? "active" : ""}
+          name="2"
+          onClick={handleLvlButton}
+        >
           2lvl
+          <BtnFillAnimation />
         </LvlButton>
-        <LvlButton name="3" onClick={handleLvlButton}>
+        <LvlButton
+          className={wordsContainer === 3 ? "active" : ""}
+          name="3"
+          onClick={handleLvlButton}
+        >
           3lvl
+          <BtnFillAnimation />
         </LvlButton>
       </LvlButtonsContainer>
 
-      {wordsContainer === 1 && (
-        <LearnWordsContainer words={words ? words?.firstLvl : []} />
-      )}
+      <LearnContainersWrap>
+        {(wordsContainer === 1 || wordsContainer === "all") && (
+          <LearnWordsContainer
+            words={words ? words?.firstLvl : []}
+            lvl="1lvl"
+          />
+        )}
 
-      {wordsContainer === 2 && (
-        <LearnWordsContainer words={words ? words?.secondLvl : []} />
-      )}
+        {(wordsContainer === 2 || wordsContainer === "all") && (
+          <LearnWordsContainer
+            words={words ? words?.secondLvl : []}
+            lvl="2lvl"
+          />
+        )}
 
-      {wordsContainer === 3 && (
-        <LearnWordsContainer words={words ? words?.thirdLvl : []} />
-      )}
+        {(wordsContainer === 3 || wordsContainer === "all") && (
+          <LearnWordsContainer
+            words={words ? words?.thirdLvl : []}
+            lvl="3lvl"
+          />
+        )}
+      </LearnContainersWrap>
     </Container>
   );
 };
