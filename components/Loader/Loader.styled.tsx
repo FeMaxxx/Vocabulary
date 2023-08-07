@@ -3,18 +3,12 @@ import { useSvg } from "@/hooks/useSvg";
 
 const { vocaryLoad } = useSvg;
 
-export const Container = styled.div`
+export const Load = styled(vocaryLoad)`
   display: inline-block;
-  transform: translateZ(1px);
-
-  & svg {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    margin: 8px;
-    animation: ldsCircle 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-    fill: var(--primaryColor);
-  }
+  width: 80px;
+  height: 80px;
+  animation: ldsCircle 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  fill: var(--primaryColor);
 
   @keyframes ldsCircle {
     100% {
@@ -32,5 +26,3 @@ export const Container = styled.div`
     }
   }
 `;
-
-export const Icon = styled(vocaryLoad)``;

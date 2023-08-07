@@ -1,14 +1,10 @@
 import { FC } from "react";
-import { Container, Icon } from "./Loader.styled";
+import { Load } from "./Loader.styled";
 
 interface LoaderProps {
   size: number;
 }
 
 export const Loader: FC<LoaderProps> = ({ size }) => {
-  return (
-    <Container>
-      <Icon style={{ width: size, height: size }}></Icon>
-    </Container>
-  );
+  return <Load style={{ width: size, height: size }} />;
 };

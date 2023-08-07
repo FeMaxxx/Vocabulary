@@ -126,7 +126,6 @@ export const RegisterForm: FC = () => {
   }, []);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setErrorMessage(null);
     if (e.target.name === "email") {
       setEmail(e.target.value);
     } else {
