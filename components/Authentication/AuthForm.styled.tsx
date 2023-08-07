@@ -157,10 +157,6 @@ export const LoaderWrap = styled.div`
   height: 100px;
   width: 100%;
 
-  & svg {
-    margin: 0;
-  }
-
   @media screen and (min-width: ${mediaSizes.tablet}) {
     height: 100%;
     align-items: center;

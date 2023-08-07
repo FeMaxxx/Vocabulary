@@ -14,9 +14,9 @@ const Info: FC = () => {
         to your vocabulary.
       </Text>
       <Text>
-        In the dictionary, when you have added 100+ words, you have the option
+        In the vocabulary, when you have added 100+ words, you have the option
         to take a random word from the vocabulary and see if you know it. If you
-        answer incorrectly, the word is removed from the dictionary and moved to
+        answer incorrectly, the word is removed from the vocabulary and moved to
         a page where you can learn it again.
       </Text>
       <Text>Register or login to your account to start learning.</Text>

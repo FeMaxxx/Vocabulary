@@ -1,4 +1,6 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
+import { Navigation } from "../Navigation";
+import { useRouter } from "next/router";
 import {
   Container,
   HeaderContainer,
@@ -6,13 +8,20 @@ import {
   LogoIcon,
   SiteName,
 } from "./Header.styled";
-import { Navigation } from "../Navigation";
 
 export const Header: FC = () => {
+  const router = useRouter();
+
+  const handleLogo = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.currentTarget.blur();
+    router.push("/");
+  };
+
   return (
     <HeaderContainer>
       <Container>
-        <Logo href={"/"}>
+        <Logo onClick={handleLogo}>
           <LogoIcon />
           <SiteName>Vocabulary</SiteName>
         </Logo>

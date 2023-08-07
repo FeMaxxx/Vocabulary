@@ -6,7 +6,7 @@ const { VocaryEye, VocaryMouth, Google } = useSvg;
 
 export const VocaryHead = styled.div`
   display: none;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px);
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
     display: block;

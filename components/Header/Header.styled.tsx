@@ -45,12 +45,15 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Logo = styled(Link)`
+export const Logo = styled.button`
   display: flex;
   align-items: center;
   gap: 20px;
   outline: none;
+  background: none;
 
+  &:hover h1,
+  &:hover svg,
   &:focus h1,
   &:focus svg {
     fill: var(--whiteColor);

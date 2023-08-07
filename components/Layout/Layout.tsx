@@ -10,7 +10,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const myFont = localFont({
+const quicksand = localFont({
   src: [
     {
       path: "../../fonts/Quicksand-Bold.ttf",
@@ -40,7 +40,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     );
 
   return (
-    <LayoutContainer className={myFont.className}>
+    <LayoutContainer className={quicksand.className}>
       <Header />
 
       <Main>{children}</Main>
