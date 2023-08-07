@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import { mediaSizes } from "@/constants";
+import { useSvg } from "@/hooks/useSvg";
+
+const { HeadSmile } = useSvg;
 
 export const Form = styled.form`
   width: min(600px, 100%);
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     padding: 15px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
     margin: 0 auto;
     border-radius: 10px;
   }
@@ -16,6 +19,11 @@ export const InputsWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  & > Label:nth-of-type(2) > Input {
+    font-family: "Manrope";
+    font-weight: 600;
+  }
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     gap: 30px;
@@ -47,15 +55,17 @@ export const Input = styled.input`
   padding: 0 10px;
   color: var(--textColor);
   font-size: 16px;
-  backdrop-filter: blur(4px);
 
   &::placeholder {
-    color: rgba(255, 183, 75, 0.2);
+    color: rgba(255, 183, 75, 0.3);
   }
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
-    backdrop-filter: blur(0px);
     border: 2px solid var(--primaryColor);
+
+    &::placeholder {
+      color: rgba(255, 183, 75, 0.2);
+    }
   }
 `;
 
@@ -69,7 +79,6 @@ export const SubmitBtn = styled.button`
   border: 2px solid var(--primaryColor);
   border-radius: 10px;
   background: none;
-  backdrop-filter: blur(4px);
   color: var(--primaryColor);
   font-size: 24px;
 
@@ -87,5 +96,97 @@ export const SubmitBtn = styled.button`
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     border: 3px solid var(--primaryColor);
+  }
+`;
+
+export const ErrorMessage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  height: 50px;
+  width: 100%;
+
+  text-align: center;
+  font-size: 18px;
+  color: var(--redColor);
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    font-size: 20px;
+  }
+`;
+
+export const LoaderWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+`;
+
+export const SuccessMessage = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 5px;
+  margin-top: 30px;
+  height: 50px;
+
+  font-size: 15px;
+  color: var(--greenColor);
+
+  & p::first-letter,
+  & span::first-letter {
+    text-transform: uppercase;
+  }
+
+  & p {
+    font-family: "Manrope";
+    margin-bottom: 1.5px;
+  }
+
+  @media screen and (min-width: 320px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    font-size: 18px;
+    padding-right: 60px;
+  }
+`;
+
+export const HeadIcon = styled(HeadSmile)`
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  fill: var(--greenColor);
+
+  width: 50px;
+  height: 50px;
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: var(--greenColor);
+
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+export const QuestionWrap = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 0;
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    top: 0;
   }
 `;
