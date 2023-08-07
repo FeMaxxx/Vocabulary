@@ -14,6 +14,10 @@ import HeadSmile from "../public/headSmile.svg";
 import Pan from "../public/pan.svg";
 import LogoutFirstDetail from "../public/logoutFirstDetail.svg";
 import LogoutSecondDetail from "../public/logoutSecondDetail.svg";
+import VocaryLerningSmile from "../public/vocaryLerningSmile.svg";
+import VocaryLerningCrashedSkeptical from "../public/vocaryLerningCrashedSkeptical.svg";
+import QuestionMark from "../public/questionMark.svg";
+import Cross from "../public/cross.svg";
 
 export const useSvg = {
   Logo,
@@ -32,4 +36,8 @@ export const useSvg = {
   Pan,
   LogoutFirstDetail,
   LogoutSecondDetail,
+  VocaryLerningSmile,
+  VocaryLerningCrashedSkeptical,
+  QuestionMark,
+  Cross,
 };
