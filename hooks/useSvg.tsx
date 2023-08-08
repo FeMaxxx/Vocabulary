@@ -18,6 +18,7 @@ import VocaryLerningSmile from "../public/vocaryLerningSmile.svg";
 import VocaryLerningCrashedSkeptical from "../public/vocaryLerningCrashedSkeptical.svg";
 import QuestionMark from "../public/questionMark.svg";
 import Cross from "../public/cross.svg";
+import VocaryQuestionSmile from "../public/vocaryQuestionSmile.svg";
 
 export const useSvg = {
   Logo,
@@ -40,4 +41,5 @@ export const useSvg = {
   VocaryLerningCrashedSkeptical,
   QuestionMark,
   Cross,
+  VocaryQuestionSmile,
 };

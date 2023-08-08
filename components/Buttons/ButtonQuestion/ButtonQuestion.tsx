@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import { Button, Icon } from "./ButtonQuestion.styled";
 import { gsap } from "gsap";
 import { BtnFillAnimation } from "..";
@@ -9,13 +9,16 @@ interface ButtonQuestionProps {
 }
 
 export const ButtonQuestion: FC<ButtonQuestionProps> = ({ fnc, id }) => {
-  const handleButton = () => {
-    console.log(1);
+  const handleButton = (e: MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.blur();
 
     fnc();
   };
 
   const handleMouseEnter = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1024) return;
+
     gsap.to(`.questionButton${id}`, {
       rotate: -360,
       scale: 1.8,
@@ -24,6 +27,9 @@ export const ButtonQuestion: FC<ButtonQuestionProps> = ({ fnc, id }) => {
   };
 
   const handleMouseLeave = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 1024) return;
+
     gsap.to(`.questionButton${id}`, {
       rotate: 0,
       scale: 1,
@@ -33,6 +39,7 @@ export const ButtonQuestion: FC<ButtonQuestionProps> = ({ fnc, id }) => {
 
   return (
     <Button
+      type="button"
       className={`questionButton${id}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

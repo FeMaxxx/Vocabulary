@@ -11,6 +11,7 @@ import { useWordsState } from "../../wordsState/wordsState";
 import { addHours } from "date-fns";
 import { instance } from "@/api/config";
 import { Loader } from "../Loader";
+import { AddWordModal } from "../Modals";
 import {
   Form,
   InputsWrap,
@@ -36,6 +37,7 @@ export const AddWordForm: FC = () => {
     useState<null | SuccessfulWordAddI>(null);
   const [addWordLoading, setAddWordLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const { getWords, error } = useWordsState();
 
@@ -102,74 +104,82 @@ export const AddWordForm: FC = () => {
     }
   };
 
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <Form onSubmit={handleSubmit} className="form">
-      <QuestionWrap>
-        <ButtonQuestion fnc={() => {}} id={"addWord"} />
-      </QuestionWrap>
+    <>
+      <Form onSubmit={handleSubmit} className="form">
+        <QuestionWrap>
+          <ButtonQuestion fnc={() => setModalOpen(true)} id={"addWord"} />
+        </QuestionWrap>
 
-      <InputsWrap>
-        <Label>
-          En word
-          <Input
-            onChange={handleInput}
-            name="word"
-            type="text"
-            placeholder="Vocabulary"
-            value={word}
-          />
-        </Label>
-        <Label>
-          Translation
-          <Input
-            onChange={handleInput}
-            name="translation"
-            type="text"
-            placeholder="Cловниковий запас"
-            value={translation}
-          />
-        </Label>
-      </InputsWrap>
+        <InputsWrap>
+          <Label>
+            En word
+            <Input
+              onChange={handleInput}
+              name="word"
+              type="text"
+              placeholder="Vocabulary"
+              value={word}
+            />
+          </Label>
+          <Label>
+            Translation
+            <Input
+              onChange={handleInput}
+              name="translation"
+              type="text"
+              placeholder="Cловниковий запас"
+              value={translation}
+            />
+          </Label>
+        </InputsWrap>
 
-      {addWordLoading && (
-        <LoaderWrap>
-          <Loader size={60} />
-        </LoaderWrap>
-      )}
+        {addWordLoading && (
+          <LoaderWrap>
+            <Loader size={60} />
+          </LoaderWrap>
+        )}
 
-      {successfulWordAdd && !addWordLoading && (
-        <SuccessMessage>
-          <span>{successfulWordAdd.word.trim().toLowerCase()} -</span>
-          {successfulWordAdd.translation
-            .split(/[,.]+/)
-            .map(word => word.trim().toLowerCase())
-            .filter(word => word !== "")
-            .map((word, index, arr) => {
-              return (
-                <p key={index}>
-                  {word}
-                  {arr.length - 1 === index ? "." : ","}
-                </p>
-              );
-            })}
-          <HeadIcon />
-        </SuccessMessage>
-      )}
+        {successfulWordAdd && !addWordLoading && (
+          <SuccessMessage>
+            <span>{successfulWordAdd.word.trim().toLowerCase()} -</span>
+            {successfulWordAdd.translation
+              .split(/[,.]+/)
+              .map(word => word.trim().toLowerCase())
+              .filter(word => word !== "")
+              .map((word, index, arr) => {
+                return (
+                  <p key={index}>
+                    {word}
+                    {arr.length - 1 === index ? "." : ","}
+                  </p>
+                );
+              })}
+            <HeadIcon />
+          </SuccessMessage>
+        )}
 
-      {errorMessage && !addWordLoading && !successfulWordAdd && (
-        <ErrorMessage>{errorMessage}</ErrorMessage>
-      )}
+        {errorMessage && !addWordLoading && !successfulWordAdd && (
+          <ErrorMessage>{errorMessage}</ErrorMessage>
+        )}
 
-      {!errorMessage && !addWordLoading && !successfulWordAdd && (
-        <SubmitBtn
-          onClick={handleSubmitBtn}
-          className="submitBtn"
-          type="submit"
-        >
-          Add word
-          <BtnFillAnimation />
-        </SubmitBtn>
-      )}
-    </Form>
+        {!errorMessage && !addWordLoading && !successfulWordAdd && (
+          <SubmitBtn
+            onClick={handleSubmitBtn}
+            className="submitBtn"
+            type="submit"
+          >
+            Add word
+            <BtnFillAnimation />
+          </SubmitBtn>
+        )}
+      </Form>
+
+      <AddWordModal isOpen={modalOpen} onClose={closeModal} />
+    </>
   );
 };

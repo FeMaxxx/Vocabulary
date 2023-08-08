@@ -12,15 +12,16 @@ export const BackDrop = styled.div`
   opacity: 0;
   pointer-events: none;
 
+  transition: opacity var(--animation);
+
   &.active {
     opacity: 1;
     pointer-events: auto;
-    animation: midalsAnimation var(--animation);
   }
 `;
 
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -30,7 +31,7 @@ export const Modal = styled.div`
 
   border: 3px solid var(--primaryColor);
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--modalBGColor);
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     padding: 15px;
