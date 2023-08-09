@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mediaSizes } from "@/constants";
 import { useSvg } from "@/hooks/useSvg";
 
-const { VocaryQuestionSmile, Cross } = useSvg;
+const { VocaryQuestionSmile } = useSvg;
 
 export const BackDrop = styled.div`
   position: fixed;
@@ -46,40 +46,10 @@ export const Modal = styled.div`
   }
 `;
 
-export const CloseButton = styled.button`
+export const CloseButtonWrap = styled.div`
   position: absolute;
   top: -35px;
   right: -3px;
-  overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-
-  border: 2px solid var(--primaryColor);
-  border-radius: 100px;
-  background: none;
-
-  &:hover svg,
-  &:focus svg {
-    fill: var(--whiteColor);
-  }
-
-  &:hover div,
-  &:focus div {
-    top: 0;
-  }
-`;
-
-export const CrossIcon = styled(Cross)`
-  fill: var(--primaryColor);
-
-  width: 16px;
-  height: 16px;
-
-  transition: fill var(--animation);
 `;
 
 export const Vocary = styled(VocaryQuestionSmile)`
