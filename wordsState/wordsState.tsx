@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { instance } from "@/api/config";
-import { WordsI, WordI, MoveWordI } from "@/types/words";
+import { WordsI, MoveWordI, DeleteWordI } from "@/types/words";
 
 interface State {
   words: WordsI | null;
@@ -9,6 +9,7 @@ interface State {
 
   moveWord: (moveData: MoveWordI) => void;
   getWords: () => void;
+  deleteWord: (deleteData: DeleteWordI) => void;
   setWords: (words: WordsI) => void;
 }
 
@@ -20,8 +21,10 @@ const wordsState = create<State>()(set => ({
   moveWord: async moveData => {
     set({ loading: true, error: null });
     try {
-      await instance.post(`move`, moveData);
-      set({ loading: false });
+      await instance.post(`words/move`, moveData);
+      const response = await instance.get(`words`);
+
+      set({ loading: false, words: response.data[0] });
     } catch (error: any) {
       const { message } = JSON.parse(error.request.response);
       set({
@@ -44,6 +47,23 @@ const wordsState = create<State>()(set => ({
     }
   },
 
+  deleteWord: async deleteData => {
+    set({ loading: true, error: null });
+
+    try {
+      await instance.post(`words/delete`, deleteData);
+      const response = await instance.get(`words`);
+
+      set({ loading: false, words: response.data[0] });
+    } catch (error: any) {
+      const { message } = JSON.parse(error.request.response);
+      set({
+        error: message,
+        loading: false,
+      });
+    }
+  },
+
   setWords: async words => {
     set({ words });
   },
@@ -56,6 +76,7 @@ export const useWordsState = () => {
 
   const moveWord = wordsState(state => state.moveWord);
   const getWords = wordsState(state => state.getWords);
+  const deleteWord = wordsState(state => state.deleteWord);
   const setWords = wordsState(state => state.setWords);
 
   return {
@@ -65,6 +86,7 @@ export const useWordsState = () => {
 
     moveWord,
     getWords,
+    deleteWord,
     setWords,
   };
 };

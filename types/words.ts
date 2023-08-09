@@ -1,12 +1,12 @@
 export interface VocabularyWordI {
-  _id?: string;
+  _id: string;
   word: string;
   translate: string[];
-  addedAt: Date;
+  addedAt: string;
 }
 
 export interface WordI extends VocabularyWordI {
-  canByConfirmed: Date;
+  canByConfirmed: string;
 }
 
 export interface WordsI {
@@ -22,4 +22,9 @@ export interface MoveWordI {
   moveFrom: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
   moveTo: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
   canByConfirmed: Date;
+}
+
+export interface DeleteWordI {
+  id: string;
+  deleteFrom: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
 }

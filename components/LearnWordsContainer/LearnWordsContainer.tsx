@@ -1,8 +1,12 @@
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { WordI } from "@/types/words";
 import { BtnFillAnimation, ButtonQuestion } from "../Buttons";
 import { format, isBefore, parseISO } from "date-fns";
-import { LearningContainersInfoModal } from "../Modals";
+import {
+  ConfirmWordModal,
+  LearningContainersInfoModal,
+  LearningWordModal,
+} from "../Modals";
 import {
   WordsContainer,
   Lvl,
@@ -20,24 +24,48 @@ import {
 
 interface Props {
   words: WordI[];
-  lvl: string;
+  lvl: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
 }
 
 export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
-  const [wordsInConfirn, setWordsInConfirn] = useState(false);
+  const [wordsInConfirm, setWordsInConfirm] = useState(false);
   const [wordsInWait, setWordsInWait] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
+  const [wordModalOpen, setWordModalOpen] = useState(false);
+  const [confirmWordModalOpen, setConfirmWordModalOpen] = useState(false);
+  const [word, setWord] = useState<WordI | null>();
 
   const closeModal = () => {
-    setModalOpen(false);
+    setWordModalOpen(false);
+  };
+
+  const handleWordClick = (e: MouseEvent) => {
+    const findWord = words.find(word => word._id === e.currentTarget.id);
+
+    setWord(findWord);
+    setWordModalOpen(true);
+  };
+
+  const handleConfirmBtnClick = (e: MouseEvent) => {
+    const previousSibling = e.currentTarget.previousSibling as HTMLElement;
+    const findWord = words.find(word => word._id === previousSibling?.id);
+
+    setWord(findWord);
+    setConfirmWordModalOpen(true);
+  };
+
+  const levels = {
+    firstLvl: "1lvl",
+    secondLvl: "2lvl",
+    thirdLvl: "3lvl",
   };
 
   return (
     <>
       <WordsContainer>
-        <Lvl>{lvl}</Lvl>
+        <Lvl>{levels[lvl as keyof typeof levels]}</Lvl>
         <QuestionWrap>
-          <ButtonQuestion fnc={() => setModalOpen(true)} id={lvl} />
+          <ButtonQuestion fnc={() => setInfoModalOpen(true)} id={lvl} />
         </QuestionWrap>
 
         <Title>Can be confirmed</Title>
@@ -47,12 +75,14 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
             if (!isBefore(parseISO(word.canByConfirmed as any), new Date()))
               return;
 
-            if (!wordsInConfirn) setWordsInConfirn(true);
+            if (!wordsInConfirm) setWordsInConfirm(true);
 
             return (
               <Item key={word._id}>
-                <Word>{word.word}</Word>
-                <Button>
+                <Word id={word._id} onClick={handleWordClick}>
+                  {word.word}
+                </Word>
+                <Button onClick={handleConfirmBtnClick}>
                   <ButtonIcon />
                   <BtnFillAnimation />
                 </Button>
@@ -61,7 +91,7 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
           })}
         </WordsList>
 
-        {!wordsInConfirn && (
+        {!wordsInConfirm && (
           <WithoutWords>
             <VocaryCrashed />
           </WithoutWords>
@@ -78,7 +108,9 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
 
             return (
               <Item key={word._id}>
-                <Word>{word.word}</Word>
+                <Word id={word._id} onClick={handleWordClick}>
+                  {word.word}
+                </Word>
                 <Time>
                   {format(parseISO(word.canByConfirmed as any), "dd.MM HH:mm")}
                 </Time>
@@ -94,7 +126,22 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
         )}
       </WordsContainer>
 
-      <LearningContainersInfoModal isOpen={modalOpen} onClose={closeModal} />
+      <LearningWordModal
+        isOpen={wordModalOpen}
+        onClose={closeModal}
+        word={word ? word : null}
+        lvl={lvl}
+      />
+      <ConfirmWordModal
+        isOpen={confirmWordModalOpen}
+        onClose={() => setConfirmWordModalOpen(false)}
+        word={word ? word : null}
+        lvl={lvl}
+      />
+      <LearningContainersInfoModal
+        isOpen={infoModalOpen}
+        onClose={() => setInfoModalOpen(false)}
+      />
     </>
   );
 };

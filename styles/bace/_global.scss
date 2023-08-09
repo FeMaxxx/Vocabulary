@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: "Quicksand";
+  font-family: var(--quicksand-font);
   font-size: 32px;
   font-weight: 700;
   line-height: 1.25;

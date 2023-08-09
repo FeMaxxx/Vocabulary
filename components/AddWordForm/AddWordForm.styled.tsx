@@ -134,7 +134,9 @@ export const SuccessMessage = styled.div`
   width: 100%;
   gap: 5px;
   margin-top: 30px;
-  height: 50px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  min-height: 50px;
 
   font-size: 15px;
   color: var(--greenColor);

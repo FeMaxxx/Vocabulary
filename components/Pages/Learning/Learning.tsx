@@ -82,21 +82,21 @@ const Learning: FC = () => {
         {(wordsContainer === 1 || wordsContainer === "all") && (
           <LearnWordsContainer
             words={words ? words?.firstLvl : []}
-            lvl="1lvl"
+            lvl="firstLvl"
           />
         )}
 
         {(wordsContainer === 2 || wordsContainer === "all") && (
           <LearnWordsContainer
             words={words ? words?.secondLvl : []}
-            lvl="2lvl"
+            lvl="secondLvl"
           />
         )}
 
         {(wordsContainer === 3 || wordsContainer === "all") && (
           <LearnWordsContainer
             words={words ? words?.thirdLvl : []}
-            lvl="3lvl"
+            lvl="thirdLvl"
           />
         )}
       </LearnContainersWrap>
