@@ -1,6 +1,14 @@
 import { ButtonText } from "./ButtonText/ButtonText";
 import { ButtonIcon } from "./ButtonIcon/ButtonIcon";
-import { BtnFillAnimation } from "./BtnFillAnimation";
 import { ButtonQuestion } from "./ButtonQuestion/ButtonQuestion";
+import { ButtonClose } from "./ButtonClose/ButtonClose";
 
-export { ButtonText, ButtonIcon, BtnFillAnimation, ButtonQuestion };
+import { BtnFillAnimation } from "./BtnFillAnimation";
+
+export {
+  ButtonText,
+  ButtonIcon,
+  ButtonQuestion,
+  ButtonClose,
+  BtnFillAnimation,
+};

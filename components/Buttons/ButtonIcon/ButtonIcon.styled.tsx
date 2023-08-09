@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mediaSizes } from "@/constants";
 import { useSvg } from "@/hooks/useSvg";
 
-const { Home, Info, RightArrow, Book, HeadSmile, Pan } = useSvg;
+const { Home, Info, RightArrow, Book, HeadSmile, Pan, Dumpster } = useSvg;
 
 export const Button = styled.button`
   position: relative;
@@ -21,6 +21,7 @@ export const Button = styled.button`
   &:hover svg,
   &:focus svg {
     fill: var(--whiteColor);
+    stroke: var(--whiteColor);
   }
 
   &:hover div,
@@ -29,7 +30,7 @@ export const Button = styled.button`
   }
 
   & svg {
-    transition: fill var(--animation);
+    transition: fill var(--animation), stroke var(--animation);
   }
 
   &.active {
@@ -57,6 +58,7 @@ export const InfoIcon = styled(Info)`
   width: 10px;
   height: 22px;
   fill: var(--primaryColor);
+  stroke-width: 0px;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 12px;
@@ -68,6 +70,7 @@ export const HomeIcon = styled(Home)`
   width: 22px;
   height: 22px;
   fill: var(--primaryColor);
+  stroke-width: 0px;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 28px;
@@ -79,6 +82,7 @@ export const RightArrowIcon = styled(RightArrow)`
   width: 24px;
   height: 20px;
   fill: var(--greenColor);
+  stroke-width: 0px;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 28px;
@@ -90,6 +94,7 @@ export const HeadSmileIcon = styled(HeadSmile)`
   width: 24px;
   height: 24px;
   fill: var(--primaryColor);
+  stroke-width: 0px;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 28px;
@@ -101,6 +106,7 @@ export const BookIcon = styled(Book)`
   width: 21px;
   height: 24px;
   fill: var(--primaryColor);
+  stroke-width: 0px;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 25px;
@@ -112,6 +118,20 @@ export const PanIcon = styled(Pan)`
   width: 22px;
   height: 24px;
   fill: var(--primaryColor);
+  stroke-width: 0px;
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    width: 26px;
+    height: 28px;
+  }
+`;
+
+export const DumpsterIcon = styled(Dumpster)`
+  width: 20px;
+  height: 22px;
+  stroke: var(--redColor);
+  fill: none !important;
+  stroke-width: 2.5px;
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {
     width: 26px;
