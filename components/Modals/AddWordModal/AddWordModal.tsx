@@ -1,12 +1,11 @@
 import { FC, useEffect, MouseEvent } from "react";
 import { ModalProps } from "@/types/modals";
 import { Portal } from "../Portal";
-import { BtnFillAnimation } from "@/components/Buttons";
+import { ButtonClose } from "@/components/Buttons";
 import {
   BackDrop,
   Modal,
-  CloseButton,
-  CrossIcon,
+  CloseButtonWrap,
   Vocary,
   TextWrap,
   Text,
@@ -36,10 +35,6 @@ export const AddWordModal: FC<ModalProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
-  const handleCloseBtn = () => {
-    onClose();
-  };
-
   return (
     <Portal>
       <BackDrop
@@ -48,10 +43,9 @@ export const AddWordModal: FC<ModalProps> = ({ isOpen, onClose }) => {
         className={isOpen ? "active" : ""}
       >
         <Modal>
-          <CloseButton onClick={handleCloseBtn}>
-            <CrossIcon />
-            <BtnFillAnimation />
-          </CloseButton>
+          <CloseButtonWrap>
+            <ButtonClose fnc={() => onClose()} />
+          </CloseButtonWrap>
 
           <Vocary />
 
