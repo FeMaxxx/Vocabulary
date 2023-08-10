@@ -79,3 +79,11 @@ export const LearnContainersWrap = styled.div`
     gap: 50px;
   }
 `;
+
+export const LoaderWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 30px;
+`;

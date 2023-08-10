@@ -15,27 +15,13 @@ interface State {
 
 const wordsState = create<State>()(set => ({
   words: null,
-  loading: false,
+  loading: true,
   error: null,
 
   moveWord: async moveData => {
-    set({ loading: true, error: null });
+    set({ error: null });
     try {
       await instance.post(`words/move`, moveData);
-      const response = await instance.get(`words`);
-
-      set({ loading: false, words: response.data[0] });
-    } catch (error: any) {
-      const { message } = JSON.parse(error.request.response);
-      set({
-        loading: false,
-        error: message,
-      });
-    }
-  },
-
-  getWords: async () => {
-    try {
       const response = await instance.get(`words`);
 
       set({ words: response.data[0] });
@@ -47,14 +33,12 @@ const wordsState = create<State>()(set => ({
     }
   },
 
-  deleteWord: async deleteData => {
-    set({ loading: true, error: null });
-
+  getWords: async () => {
+    set({ error: null });
     try {
-      await instance.post(`words/delete`, deleteData);
       const response = await instance.get(`words`);
 
-      set({ loading: false, words: response.data[0] });
+      set({ words: response.data[0], loading: false });
     } catch (error: any) {
       const { message } = JSON.parse(error.request.response);
       set({
@@ -64,8 +48,23 @@ const wordsState = create<State>()(set => ({
     }
   },
 
+  deleteWord: async deleteData => {
+    set({ error: null });
+    try {
+      await instance.post(`words/delete`, deleteData);
+      const response = await instance.get(`words`);
+
+      set({ words: response.data[0] });
+    } catch (error: any) {
+      const { message } = JSON.parse(error.request.response);
+      set({
+        error: message,
+      });
+    }
+  },
+
   setWords: async words => {
-    set({ words });
+    set({ words, loading: false });
   },
 }));
 

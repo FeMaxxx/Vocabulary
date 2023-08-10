@@ -3,13 +3,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  width: 100px;
   background: var(--primaryBGColor);
   border: 1px solid rgba(255, 183, 75, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-  width: 100px;
   background: linear-gradient(
     rgba(255, 183, 75, 0.3),
     rgba(255, 183, 75, 0.8),

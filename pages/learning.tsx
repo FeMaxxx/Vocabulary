@@ -8,11 +8,12 @@ import Head from "next/head";
 
 const Learning: FC = (data: any) => {
   const { isLogedIn } = useGlobalState();
-  const { setWords } = useWordsState();
+  const { setWords, getWords } = useWordsState();
   const router = useRouter();
 
   useEffect(() => {
     if (data.data) setWords(data.data[0]);
+    if (data.data === null) getWords();
   }, []);
 
   if (isLogedIn === false) {
