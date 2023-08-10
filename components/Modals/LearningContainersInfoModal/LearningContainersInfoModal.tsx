@@ -22,6 +22,12 @@ export const LearningContainersInfoModal: FC<ModalProps> = ({
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+
     if (!isOpen) return;
 
     const handleEscBtnClick = (e: KeyboardEvent) => {

@@ -39,6 +39,8 @@ export const Modal = styled.div`
   border-radius: 30px;
   background-color: var(--modalBGColor);
 
+  transition: border-color var(--animation);
+
   &.correct {
     border-color: var(--greenColor);
 
@@ -73,6 +75,8 @@ export const Vocary = styled(VocaryLerningSmile)`
     width: 200px;
     height: 200px;
     margin-right: 30px;
+
+    transition: fill var(--animation);
   }
 
   @media screen and (min-width: ${mediaSizes.smallDesktop}) {

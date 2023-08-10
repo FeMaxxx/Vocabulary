@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mediaSizes } from "@/constants";
 import { useSvg } from "@/hooks/useSvg";
 
-const { Cross, VocaryLerningSmile } = useSvg;
+const { VocaryLerningSmile } = useSvg;
 
 export const BackDrop = styled.div`
   position: fixed;

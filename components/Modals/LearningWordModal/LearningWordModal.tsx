@@ -38,6 +38,12 @@ export const LearningWordModal: FC<AddWordModalProps> = ({
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+
     if (!isOpen) return;
 
     const handleEscBtnClick = (e: KeyboardEvent) => {

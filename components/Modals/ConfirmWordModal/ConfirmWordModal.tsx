@@ -52,20 +52,25 @@ export const ConfirmWordModal: FC<AddWordModalProps> = ({
     if (rightWords === null) return;
 
     if (e.target === e.currentTarget) {
-      cleansing();
       onClose();
+      cleansing();
     }
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+
     if (!isOpen) return;
 
     const handleEscBtnClick = (e: KeyboardEvent) => {
       if (rightWords === null) return;
-
       if (e.key === "Escape") {
-        cleansing();
         onClose();
+        cleansing();
       }
     };
 
@@ -74,13 +79,13 @@ export const ConfirmWordModal: FC<AddWordModalProps> = ({
     return () => {
       document.removeEventListener("keydown", handleEscBtnClick);
     };
-  }, [isOpen]);
+  }, [isOpen, rightWords]);
 
   if (!word) return null;
 
   const handleCloseButton = () => {
-    cleansing();
     onClose();
+    cleansing();
   };
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {

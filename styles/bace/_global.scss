@@ -2,13 +2,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: var(--quicksand-font);
   font-size: 32px;
   font-weight: 700;
   line-height: 1.25;
 
-  scrollbar-gutter: stable;
   background-color: #1f2123;
   color: var(--textColor);
 

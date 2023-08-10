@@ -21,6 +21,14 @@ export const VerificationModal: FC<ModalProps> = ({ isOpen }) => {
   const { loading, verifyEmail, verifyError } = useGlobalState();
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     setErrorMessage(verifyError);
   }, [verifyError]);
 

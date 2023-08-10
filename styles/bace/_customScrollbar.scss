@@ -1,0 +1,26 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  width: 100px;
+  background: var(--primaryBGColor);
+  border: 1px solid rgba(255, 183, 75, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  width: 100px;
+  background: linear-gradient(
+    rgba(255, 183, 75, 0.3),
+    rgba(255, 183, 75, 0.8),
+    rgba(255, 183, 75, 0.3)
+  );
+  border-radius: 100px;
+}
+
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: #ffb74b #1f2123;
+    scrollbar-width: thin;
+  }
+}

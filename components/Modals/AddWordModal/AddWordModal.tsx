@@ -20,6 +20,12 @@ export const AddWordModal: FC<ModalProps> = ({ isOpen, onClose }) => {
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+
     if (!isOpen) return;
 
     const handleEscBtnClick = (e: KeyboardEvent) => {
