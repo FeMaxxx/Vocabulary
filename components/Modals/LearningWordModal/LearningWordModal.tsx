@@ -93,7 +93,7 @@ export const LearningWordModal: FC<AddWordModalProps> = ({
                 Can be confirmed:{" "}
                 <span>
                   {isBefore(parseISO(word.canByConfirmed as any), new Date())
-                    ? "Now"
+                    ? "Right now"
                     : format(
                         parseISO(word.canByConfirmed as any),
                         "dd.MM HH:mm"

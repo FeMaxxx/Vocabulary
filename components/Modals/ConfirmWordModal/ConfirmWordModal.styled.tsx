@@ -42,7 +42,7 @@ export const Modal = styled.div`
   &.correct {
     border-color: var(--greenColor);
 
-    & svg:not(:first-of-type) {
+    & > svg {
       fill: var(--greenColor);
     }
   }
@@ -50,7 +50,7 @@ export const Modal = styled.div`
   &.wrong {
     border-color: var(--redColor);
 
-    & svg:not(:first-of-type) {
+    & > svg {
       fill: var(--redColor);
     }
   }

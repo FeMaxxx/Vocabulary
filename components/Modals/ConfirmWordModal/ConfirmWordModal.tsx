@@ -192,7 +192,8 @@ export const ConfirmWordModal: FC<AddWordModalProps> = ({
                 </WordsContainer>
 
                 <WordsContainer>
-                  <p>Correct answers: </p>
+                  <p>Correct answer{rightWords?.length === 1 ? "" : "s"}: </p>
+                  {rightWords?.length === 0 && <span>-</span>}
                   {rightWords?.map((word, index, arr) => {
                     return (
                       <span key={index}>
@@ -204,7 +205,8 @@ export const ConfirmWordModal: FC<AddWordModalProps> = ({
                 </WordsContainer>
 
                 <WordsContainer>
-                  <p>Wrong answers: </p>
+                  <p>Wrong answer{wrongWords?.length === 1 ? "" : "s"}: </p>
+                  {wrongWords?.length === 0 && <span>-</span>}
                   {wrongWords?.map((word, index, arr) => {
                     return (
                       <span key={index}>

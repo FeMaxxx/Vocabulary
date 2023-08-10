@@ -157,29 +157,28 @@ export const SuccessMessage = styled.div`
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     font-size: 18px;
-    padding-right: 60px;
+    padding: 0 50px;
   }
 `;
 
 export const HeadIcon = styled(HeadSmile)`
   display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  fill: var(--greenColor);
-
-  width: 50px;
-  height: 50px;
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     display: block;
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
+
+    width: 40px;
+    height: 40px;
+
+    transform: translate(0, -50%);
     fill: var(--greenColor);
 
-    width: 50px;
-    height: 50px;
+    &:first-of-type {
+      left: 0;
+    }
   }
 `;
 
