@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import { WordI } from "@/types/words";
 import { BtnFillAnimation, ButtonQuestion } from "../Buttons";
 import { format, isBefore, parseISO } from "date-fns";
@@ -34,6 +34,11 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
   const [wordModalOpen, setWordModalOpen] = useState(false);
   const [confirmWordModalOpen, setConfirmWordModalOpen] = useState(false);
   const [word, setWord] = useState<WordI | null>();
+
+  useEffect(() => {
+    setWordsInConfirm(false);
+    setWordsInWait(false);
+  }, [words]);
 
   const closeModal = () => {
     setWordModalOpen(false);

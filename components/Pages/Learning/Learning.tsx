@@ -86,6 +86,7 @@ const Learning: FC = () => {
               <BtnFillAnimation />
             </LvlButton>
           </LvlButtonsContainer>
+
           <LearnContainersWrap>
             {(wordsContainer === 1 || wordsContainer === "all") && (
               <LearnWordsContainer
