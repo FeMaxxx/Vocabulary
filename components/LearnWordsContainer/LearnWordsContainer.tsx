@@ -40,11 +40,8 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
     setWordsInWait(false);
   }, [words]);
 
-  const closeModal = () => {
-    setWordModalOpen(false);
-  };
-
-  const handleWordClick = (e: MouseEvent) => {
+  const handleWordClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.blur();
     const findWord = words.find(word => word._id === e.currentTarget.id);
 
     setWord(findWord);
@@ -84,7 +81,7 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
 
             return (
               <Item key={word._id}>
-                <Word id={word._id} onClick={handleWordClick}>
+                <Word tabIndex={0} id={word._id} onClick={handleWordClick}>
                   {word.word}
                 </Word>
                 <Button onClick={handleConfirmBtnClick}>
@@ -113,7 +110,7 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
 
             return (
               <Item key={word._id}>
-                <Word id={word._id} onClick={handleWordClick}>
+                <Word tabIndex={0} id={word._id} onClick={handleWordClick}>
                   {word.word}
                 </Word>
                 <Time>
@@ -133,7 +130,7 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
 
       <LearningWordModal
         isOpen={wordModalOpen}
-        onClose={closeModal}
+        onClose={() => setWordModalOpen(false)}
         word={word ? word : null}
         lvl={lvl}
       />

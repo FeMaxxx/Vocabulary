@@ -103,7 +103,6 @@ export const Wrap = styled.div`
 export const Word = styled.h1`
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
   font-size: 14px;
   word-break: break-all;
   white-space: pre-wrap;

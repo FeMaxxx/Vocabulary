@@ -17,12 +17,12 @@ import {
   ButtonsContainer,
 } from "./LearningWordModal.styled";
 
-export interface AddWordModalProps extends ModalProps {
+interface LearningWordModalProps extends ModalProps {
   word: WordI | null;
   lvl: "vocabulary" | "firstLvl" | "secondLvl" | "thirdLvl";
 }
 
-export const LearningWordModal: FC<AddWordModalProps> = ({
+export const LearningWordModal: FC<LearningWordModalProps> = ({
   isOpen,
   onClose,
   word,

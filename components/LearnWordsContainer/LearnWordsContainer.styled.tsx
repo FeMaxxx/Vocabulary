@@ -66,9 +66,13 @@ export const Item = styled.li`
   }
 `;
 
-export const Word = styled.p`
+export const Word = styled.button`
   margin-right: 20px;
+
+  font-size: 18px;
+  background: none;
   overflow: hidden;
+  outline: none;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
@@ -79,7 +83,8 @@ export const Word = styled.p`
     text-transform: uppercase;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: var(--primaryColor);
   }
 `;
