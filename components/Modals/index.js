@@ -3,6 +3,7 @@ import { LearningContainersInfoModal } from "./LearningContainersInfoModal/Learn
 import { AddWordModal } from "./AddWordModal/AddWordModal";
 import { LearningWordModal } from "./LearningWordModal/LearningWordModal";
 import { ConfirmWordModal } from "./ConfirmWordModal/ConfirmWordModal";
+import { VocabularyWordModal } from "./VocabularyWordModal/VocabularyWordModal";
 
 export {
   VerificationModal,
@@ -10,4 +11,5 @@ export {
   AddWordModal,
   LearningWordModal,
   ConfirmWordModal,
+  VocabularyWordModal,
 };

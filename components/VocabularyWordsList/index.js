@@ -1,0 +1,1 @@
+export { VocabularyWordsList } from "./VocabularyWordsList";

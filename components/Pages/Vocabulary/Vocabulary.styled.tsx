@@ -14,11 +14,12 @@ export const Container = styled.section`
 
 export const Wrap = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 
   @media screen and (min-width: ${mediaSizes.tablet}) {
+    justify-content: space-between;
     flex-wrap: nowrap;
   }
 `;
@@ -28,10 +29,13 @@ export const Background = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
-  padding: 15px;
-  backdrop-filter: blur(2px);
   max-width: 450px;
   width: 100%;
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    padding: 15px;
+    backdrop-filter: blur(2px);
+  }
 `;
 
 export const Title = styled.h2`
@@ -43,7 +47,7 @@ export const Input = styled.input`
   height: 40px;
   width: 100%;
   background: none;
-  border: 1px solid var(--primaryColor);
+  border: 2px solid var(--primaryColor);
   border-radius: 10px;
   padding: 0 10px;
   color: var(--textColor);
@@ -55,8 +59,6 @@ export const Input = styled.input`
   }
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
-    border: 2px solid var(--primaryColor);
-
     &::placeholder {
       color: rgba(255, 183, 75, 0.2);
     }
@@ -70,8 +72,13 @@ export const Input = styled.input`
 
 export const ButtonsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    flex-wrap: nowrap;
+  }
 `;
 
 export const Button = styled.button`
@@ -90,6 +97,7 @@ export const Button = styled.button`
   transition: color var(--animation);
 
   &.active {
+    cursor: default;
     color: var(--textColor);
 
     & div {
@@ -113,62 +121,10 @@ export const Button = styled.button`
   }
 `;
 
-export const WordsList = styled.ul`
+export const LoaderWrap = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  margin-top: 30px;
-  padding: 15px;
-  backdrop-filter: blur(2px);
-  width: 100%;
-
-  & p::first-letter {
-    text-transform: uppercase;
-  }
-
-  @media screen and (min-width: ${mediaSizes.tablet}) {
-    margin-top: 50px;
-  }
-`;
-
-export const WordsListItem = styled.li`
-  max-width: min(100%, 300px);
-`;
-
-export const WordBtn = styled.button`
-  position: relative;
-  overflow: hidden;
-  display: flex;
-
   align-items: center;
-  gap: 5px;
 
-  width: 100%;
-  height: 40px;
-  padding: 0 10px;
-
-  border: 2px solid var(--primaryColor);
-  border-radius: 10px;
-  background: none;
-
-  font-size: 16px;
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  &:hover div,
-  &:focus div {
-    top: 0;
-  }
-`;
-
-export const Word = styled.p``;
-
-export const Translation = styled.div`
-  display: flex;
-  gap: 5px;
-  font-family: "Manrope";
-
-  overflow: hidden;
+  margin-top: 50px;
 `;

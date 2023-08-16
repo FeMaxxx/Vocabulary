@@ -20,6 +20,7 @@ import QuestionMark from "../public/questionMark.svg";
 import Cross from "../public/cross.svg";
 import VocaryQuestionSmile from "../public/vocaryQuestionSmile.svg";
 import Dumpster from "../public/dumpster.svg";
+import VocaryVocabularySmile from "../public/vocaryVocabularySmile.svg";
 
 export const useSvg = {
   Logo,
@@ -44,4 +45,5 @@ export const useSvg = {
   Cross,
   VocaryQuestionSmile,
   Dumpster,
+  VocaryVocabularySmile,
 };
