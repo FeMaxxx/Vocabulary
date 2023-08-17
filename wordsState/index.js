@@ -1,0 +1,1 @@
+export { useWordsState } from "./wordsState";

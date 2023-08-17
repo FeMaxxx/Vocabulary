@@ -5,30 +5,34 @@ import { WordsI, MoveWordI, DeleteWordI } from "@/types/words";
 interface State {
   words: WordsI | null;
   loading: boolean;
+  moveLoading: boolean;
   error: null | string;
 
   moveWord: (moveData: MoveWordI) => void;
   getWords: () => void;
   deleteWord: (deleteData: DeleteWordI) => void;
   setWords: (words: WordsI) => void;
+  updateRandomWordStats: (successes: boolean) => void;
 }
 
 const wordsState = create<State>()(set => ({
   words: null,
   loading: true,
+  moveLoading: false,
   error: null,
 
   moveWord: async moveData => {
-    set({ error: null });
+    set({ error: null, moveLoading: true });
     try {
       await instance.post(`words/move`, moveData);
       const response = await instance.get(`words`);
 
-      set({ words: response.data[0] });
+      set({ words: response.data[0], moveLoading: false });
     } catch (error: any) {
       const { message } = JSON.parse(error.request.response);
       set({
         error: message,
+        moveLoading: false,
       });
     }
   },
@@ -49,16 +53,17 @@ const wordsState = create<State>()(set => ({
   },
 
   deleteWord: async deleteData => {
-    set({ error: null });
+    set({ error: null, moveLoading: true });
     try {
       await instance.post(`words/delete`, deleteData);
       const response = await instance.get(`words`);
 
-      set({ words: response.data[0] });
+      set({ words: response.data[0], moveLoading: false });
     } catch (error: any) {
       const { message } = JSON.parse(error.request.response);
       set({
         error: message,
+        moveLoading: false,
       });
     }
   },
@@ -66,26 +71,39 @@ const wordsState = create<State>()(set => ({
   setWords: async words => {
     set({ words, loading: false });
   },
+
+  updateRandomWordStats: async successes => {
+    set({ error: null });
+    try {
+      await instance.patch(`stats/randomVord`, { successes });
+    } catch (error: any) {}
+  },
 }));
 
 export const useWordsState = () => {
   const words = wordsState(state => state.words);
   const loading = wordsState(state => state.loading);
+  const moveLoading = wordsState(state => state.moveLoading);
   const error = wordsState(state => state.error);
 
   const moveWord = wordsState(state => state.moveWord);
   const getWords = wordsState(state => state.getWords);
   const deleteWord = wordsState(state => state.deleteWord);
   const setWords = wordsState(state => state.setWords);
+  const updateRandomWordStats = wordsState(
+    state => state.updateRandomWordStats
+  );
 
   return {
     words,
     loading,
+    moveLoading,
     error,
 
     moveWord,
     getWords,
     deleteWord,
     setWords,
+    updateRandomWordStats,
   };
 };
