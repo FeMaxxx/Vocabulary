@@ -22,7 +22,6 @@ export const InputsWrap = styled.div`
 
   & > Label:nth-of-type(2) > Input {
     font-family: "Manrope";
-    font-weight: 600;
   }
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
@@ -146,7 +145,7 @@ export const SuccessMessage = styled.div`
     text-transform: uppercase;
   }
 
-  & p {
+  & span {
     font-family: "Manrope";
     margin-bottom: 1.5px;
   }

@@ -147,18 +147,20 @@ export const AddWordForm: FC = () => {
         {successfulWordAdd && !addWordLoading && (
           <SuccessMessage>
             <HeadIcon />
-            <span>
+            <p>
               {successfulWordAdd.word.trim().toLowerCase()} -{" "}
-              {successfulWordAdd.translation
-                .split(/[,.]+/)
-                .map(
-                  word => word.trim().charAt(0).toUpperCase() + word.slice(1)
-                )
-                .filter(word => word !== "")
-                .map((word, index, arr) => {
-                  return `${word}${arr.length - 1 === index ? "." : ", "}`;
-                })}
-            </span>
+              <span>
+                {successfulWordAdd.translation
+                  .split(/[,.]+/)
+                  .map(
+                    word => word.trim().charAt(0).toUpperCase() + word.slice(1)
+                  )
+                  .filter(word => word !== "")
+                  .map((word, index, arr) => {
+                    return `${word}${arr.length - 1 === index ? "." : ", "}`;
+                  })}
+              </span>
+            </p>
 
             <HeadIcon />
           </SuccessMessage>

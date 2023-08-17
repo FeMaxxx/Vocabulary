@@ -101,5 +101,4 @@ export const Text = styled.p``;
 
 export const UaText = styled.span`
   font-family: "Manrope";
-  font-weight: 600;
 `;
