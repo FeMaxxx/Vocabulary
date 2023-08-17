@@ -4,6 +4,8 @@ import { AddWordModal } from "./AddWordModal/AddWordModal";
 import { LearningWordModal } from "./LearningWordModal/LearningWordModal";
 import { ConfirmWordModal } from "./ConfirmWordModal/ConfirmWordModal";
 import { VocabularyWordModal } from "./VocabularyWordModal/VocabularyWordModal";
+import { CheckRandomWordModal } from "./CheckRandomWordModal/CheckRandomWordModal";
+import { RandomWordInfo } from "./RandomWordInfo/RandomWordInfo";
 
 export {
   VerificationModal,
@@ -12,4 +14,6 @@ export {
   LearningWordModal,
   ConfirmWordModal,
   VocabularyWordModal,
+  CheckRandomWordModal,
+  RandomWordInfo,
 };
