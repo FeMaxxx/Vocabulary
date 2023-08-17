@@ -141,3 +141,13 @@ export const ButtonsContainer = styled.div`
     margin-top: 50px;
   }
 `;
+
+export const LoaderWrap = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    margin-top: 50px;
+  }
+`;

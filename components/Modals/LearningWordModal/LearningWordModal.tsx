@@ -5,8 +5,9 @@ import { Portal } from "../Portal";
 import { ButtonClose } from "@/components/Buttons";
 import { format, isBefore, parseISO } from "date-fns";
 import { ButtonIcon } from "@/components/Buttons";
-import { useWordsState } from "@/wordsState/wordsState";
+import { useWordsState } from "@/wordsState";
 import { ConfirmWordModal } from "..";
+import { Loader } from "@/components/Loader";
 import {
   BackDrop,
   Modal,
@@ -15,6 +16,7 @@ import {
   Wrap,
   Word,
   ButtonsContainer,
+  LoaderWrap,
 } from "./LearningWordModal.styled";
 
 interface LearningWordModalProps extends ModalProps {
@@ -28,7 +30,7 @@ export const LearningWordModal: FC<LearningWordModalProps> = ({
   word,
   lvl,
 }) => {
-  const { deleteWord } = useWordsState();
+  const { deleteWord, moveLoading } = useWordsState();
   const [confirmWordModalOpen, setConfirmWordModalOpen] = useState(false);
 
   const handleBackDropClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -65,8 +67,8 @@ export const LearningWordModal: FC<LearningWordModalProps> = ({
 
   if (!word) return null;
 
-  const handleDeleteButton = () => {
-    deleteWord({ id: word._id, deleteFrom: lvl });
+  const handleDeleteButton = async () => {
+    await deleteWord({ id: word._id, deleteFrom: lvl });
     onClose();
   };
 
@@ -107,16 +109,27 @@ export const LearningWordModal: FC<LearningWordModalProps> = ({
                 </span>
               </p>
 
-              <ButtonsContainer>
-                <ButtonIcon fnc={handleDeleteButton} icon="dumpster" />
+              {!moveLoading && (
+                <ButtonsContainer>
+                  <ButtonIcon fnc={handleDeleteButton} icon="dumpster" />
 
-                {isBefore(parseISO(word?.canByConfirmed as any), new Date()) ? (
-                  <ButtonIcon
-                    fnc={() => setConfirmWordModalOpen(true)}
-                    icon="rightArrow"
-                  />
-                ) : null}
-              </ButtonsContainer>
+                  {isBefore(
+                    parseISO(word?.canByConfirmed as any),
+                    new Date()
+                  ) ? (
+                    <ButtonIcon
+                      fnc={() => setConfirmWordModalOpen(true)}
+                      icon="rightArrow"
+                    />
+                  ) : null}
+                </ButtonsContainer>
+              )}
+
+              {moveLoading && (
+                <LoaderWrap>
+                  <Loader size={48} />
+                </LoaderWrap>
+              )}
             </Wrap>
           </Modal>
         </BackDrop>
