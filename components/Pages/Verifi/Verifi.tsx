@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
-import { LoaderWrap } from "./Verification.styled";
+import { LoaderWrap } from "./Verifi.styled";
 
 const Verification: FC = () => {
   const router = useRouter();
