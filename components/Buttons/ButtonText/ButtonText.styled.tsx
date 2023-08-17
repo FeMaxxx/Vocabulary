@@ -6,6 +6,7 @@ export const Button = styled.button`
   overflow: hidden;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 
   height: 30px;
   border: 2px solid var(--primaryColor);

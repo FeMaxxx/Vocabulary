@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { BtnFillAnimation, ButtonQuestion } from "@/components/Buttons";
-import { useWordsState } from "../../wordsState/wordsState";
+import { useWordsState } from "../../wordsState";
 import { addHours } from "date-fns";
 import { instance } from "@/api/config";
 import { Loader } from "../Loader";

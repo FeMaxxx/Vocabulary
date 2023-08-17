@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import VocabularyPage from "@/components/Pages/Vocabulary";
 import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
-import { useWordsState } from "@/wordsState/wordsState";
+import { useWordsState } from "@/wordsState";
 import { instance } from "@/api/config";
 
 const Vocabulary: FC = (data: any) => {

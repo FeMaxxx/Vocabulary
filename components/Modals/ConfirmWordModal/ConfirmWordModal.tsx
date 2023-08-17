@@ -11,7 +11,7 @@ import { WordI } from "@/types/words";
 import { Portal } from "../Portal";
 import { addHours } from "date-fns";
 import { ButtonClose, ButtonIcon } from "@/components/Buttons";
-import { useWordsState } from "@/wordsState/wordsState";
+import { useWordsState } from "@/wordsState";
 import {
   BackDrop,
   Modal,
@@ -43,9 +43,11 @@ export const ConfirmWordModal: FC<AddWordModalProps> = ({
   const { moveWord } = useWordsState();
 
   const cleansing = () => {
-    setRightWords(null);
-    setWrongWords(null);
-    setTranslation("");
+    setTimeout(() => {
+      setRightWords(null);
+      setWrongWords(null);
+      setTranslation("");
+    }, 1000);
   };
 
   const handleBackDropClick = (e: MouseEvent<HTMLDivElement>) => {

@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import LearningPage from "@/components/Pages/Learning";
 import { useGlobalState } from "@/globalState";
-import { useWordsState } from "@/wordsState/wordsState";
+import { useWordsState } from "@/wordsState";
 import { useRouter } from "next/router";
 import { instance } from "@/api/config";
 import Head from "next/head";

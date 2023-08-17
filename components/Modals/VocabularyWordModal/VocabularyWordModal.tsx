@@ -8,7 +8,7 @@ import {
   ButtonIcon,
 } from "@/components/Buttons";
 import { addHours, format, parseISO } from "date-fns";
-import { useWordsState } from "@/wordsState/wordsState";
+import { useWordsState } from "@/wordsState";
 import {
   BackDrop,
   Modal,

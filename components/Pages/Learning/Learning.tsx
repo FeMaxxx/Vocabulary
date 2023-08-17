@@ -1,7 +1,7 @@
 import { FC, useState, MouseEvent, useEffect } from "react";
 import { AddWordForm } from "@/components/AddWordForm";
 import { LearnWordsContainer } from "@/components/LearnWordsContainer";
-import { useWordsState } from "@/wordsState/wordsState";
+import { useWordsState } from "@/wordsState";
 import throttle from "lodash.throttle";
 import { BtnFillAnimation } from "@/components/Buttons";
 import { Loader } from "@/components/Loader";
