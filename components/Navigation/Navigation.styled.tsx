@@ -77,4 +77,5 @@ export const BurgerBtn = styled.button`
 export const BurgerBtnIcon = styled(BurgerMenu)`
   width: 30px;
   height: 18px;
+  stroke: var(--primaryColor);
 `;

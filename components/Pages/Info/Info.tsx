@@ -5,7 +5,7 @@ import { ButtonText } from "@/components/Buttons";
 const Info: FC = () => {
   return (
     <Container>
-      <Vocary src={"/vocaryInfoSmile.svg"} alt="vocaryInfoSmile" />
+      <Vocary />
 
       <Text>
         This site is designed to help you learn English words. You learn by

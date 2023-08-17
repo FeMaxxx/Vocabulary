@@ -83,6 +83,7 @@ export const ButtonsContainer = styled.div`
 export const Vocary = styled(VocaryHomeSmile)`
   width: 60vw;
   height: 60vw;
+  fill: var(--primaryColor);
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
     width: 330px;

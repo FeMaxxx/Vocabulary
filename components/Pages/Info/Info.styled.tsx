@@ -89,6 +89,7 @@ export const Vocary = styled(VocaryInfoSmile)`
     left: 0;
     width: 350px;
     height: 350px;
+    fill: var(--primaryColor);
 
     transform: translate(0, -50%);
 
