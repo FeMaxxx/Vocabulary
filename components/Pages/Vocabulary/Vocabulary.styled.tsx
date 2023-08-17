@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
 import { mediaSizes } from "@/constants";
+import { useSvg } from "@/hooks/useSvg";
+
+const { VocaryVocabularySmile } = useSvg;
 
 export const Container = styled.section`
   position: relative;
@@ -53,9 +56,11 @@ export const Input = styled.input`
   color: var(--textColor);
   font-size: 14px;
   text-align: center;
+  font-family: "Manrope";
 
   &::placeholder {
     color: rgba(255, 183, 75, 0.3);
+    font-family: var(--quicksand-font);
   }
 
   @media screen and (min-width: ${mediaSizes.mobile}) {
@@ -127,4 +132,89 @@ export const LoaderWrap = styled.div`
   align-items: center;
 
   margin-top: 50px;
+`;
+
+export const InfoContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding-top: 50px;
+  padding-bottom: 15px;
+  gap: 15px;
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    height: clamp(440px, 100vh - 80px, 800px);
+
+    padding-top: min(12vh, 130px);
+    padding-left: 390px;
+    padding-right: min(3vw, 55px);
+    padding-bottom: 30px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.largeDesktop}) {
+    padding-left: 410px;
+  }
+`;
+
+export const Vocary = styled(VocaryVocabularySmile)`
+  width: 60vw;
+  height: 60vw;
+  fill: var(--primaryColor);
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    width: 330px;
+    height: 330px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    position: absolute;
+    top: 50%;
+    width: 370px;
+    height: 370px;
+    left: 0;
+
+    transform: translate(0, -50%);
+
+    animation: vocaryFly 3s infinite ease-in-out;
+  }
+
+  @media screen and (min-width: ${mediaSizes.middleDesktop}) {
+    width: 390px;
+    height: 390px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.largeDesktop}) {
+    width: 430px;
+    height: 430px;
+  }
+`;
+
+export const Text = styled.h2`
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: ${mediaSizes.mobile}) {
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    font-size: 36px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.middleDesktop}) {
+    font-size: 40px;
+  }
 `;
