@@ -1,0 +1,1 @@
+export { CheckRandomWord } from "./CheckRandomWord";
