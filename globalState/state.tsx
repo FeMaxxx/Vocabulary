@@ -111,7 +111,7 @@ const globalState = create<State>()(set => ({
 
       set({
         isLogedIn: true,
-        userEmail: response.data.email,
+        userEmail: response.data.user.email,
         siteLoading: false,
       });
     } catch {

@@ -1,10 +1,31 @@
 import { FC } from "react";
-import { Container } from "./Profile.styled";
+import { EnglishLevelScale } from "@/components/EnglishLevelScale";
+import { Statistics } from "@/components/Statistics";
+import { Achievements } from "@/components/Achievements";
+import { useGlobalState } from "@/globalState";
+import { StatsI } from "@/types/stats";
+import { Container, EmailContainer, Email, Wrap } from "./Profile.styled";
 
-const Profile: FC = () => {
+interface Props {
+  stats: StatsI | null;
+}
+
+const Profile: FC<Props> = ({ stats }) => {
+  const { userEmail } = useGlobalState();
+
   return (
     <Container>
-      <h1>Profile</h1>
+      <EmailContainer>
+        <Email>{userEmail}</Email>
+      </EmailContainer>
+      <EnglishLevelScale
+        wordsInVocabilary={stats?.wordsInVocabulary as number}
+      />
+
+      <Wrap>
+        <Statistics stats={stats} />
+        <Achievements />
+      </Wrap>
     </Container>
   );
 };
