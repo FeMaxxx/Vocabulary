@@ -6,6 +6,7 @@ import { ConfirmWordModal } from "./ConfirmWordModal/ConfirmWordModal";
 import { VocabularyWordModal } from "./VocabularyWordModal/VocabularyWordModal";
 import { CheckRandomWordModal } from "./CheckRandomWordModal/CheckRandomWordModal";
 import { RandomWordInfo } from "./RandomWordInfo/RandomWordInfo";
+import { EnglishLevelModal } from "./EnglishLevelModal/EnglishLevelModal";
 
 export {
   VerificationModal,
@@ -16,4 +17,5 @@ export {
   VocabularyWordModal,
   CheckRandomWordModal,
   RandomWordInfo,
+  EnglishLevelModal,
 };
