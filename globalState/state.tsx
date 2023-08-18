@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { instance } from "@/api/config";
+import { instance, authInstance } from "@/api/config";
 import { Auth } from "@/types/auth";
 
 interface State {
@@ -33,7 +33,7 @@ const globalState = create<State>()(set => ({
   register: async userData => {
     set({ loading: true, registerError: null });
     try {
-      await instance.post(`auth/register`, userData);
+      await authInstance.post(`auth/register`, userData);
 
       set({ loading: false, needVerifyEmail: true });
     } catch (error: any) {
@@ -48,7 +48,7 @@ const globalState = create<State>()(set => ({
   login: async userData => {
     set({ loading: true, loginError: null });
     try {
-      const response = await instance.post(`auth/login`, userData);
+      const response = await authInstance.post(`auth/login`, userData);
       set({ loading: false, isLogedIn: true, userEmail: response.data.email });
     } catch (error: any) {
       if (error.code === "ERR_NETWORK") {
@@ -74,7 +74,7 @@ const globalState = create<State>()(set => ({
   verifyEmail: async verificationCode => {
     set({ loading: true, verifyError: null });
     try {
-      const response = await instance.post(
+      const response = await authInstance.post(
         `auth/verifyEmail/${verificationCode}`
       );
 
