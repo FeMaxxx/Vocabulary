@@ -2,7 +2,6 @@ import Logo from "../public/logo.svg";
 import Info from "../public/info.svg";
 import Home from "../public/home.svg";
 import VocaryHomeSmile from "../public/vocaryHomeSmile.svg";
-import BurgerMenu from "../public/burgerMenu.svg";
 import VocaryInfoSmile from "../public/vocaryInfoSmile.svg";
 import VocaryEye from "../public/vocaryEye.svg";
 import VocaryMouth from "../public/vocaryMouth.svg";
@@ -27,7 +26,6 @@ export const useSvg = {
   Info,
   Home,
   VocaryHomeSmile,
-  BurgerMenu,
   VocaryInfoSmile,
   VocaryEye,
   VocaryMouth,

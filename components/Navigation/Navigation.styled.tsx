@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useSvg } from "@/hooks/useSvg";
 import { mediaSizes } from "@/constants";
 
-const { BurgerMenu, LogoutFirstDetail, LogoutSecondDetail } = useSvg;
+const { LogoutFirstDetail, LogoutSecondDetail } = useSvg;
 
 export const Nav = styled.nav`
   display: none;
@@ -67,6 +67,17 @@ export const LogoutSecond = styled(LogoutSecondDetail)`
 `;
 
 export const BurgerBtn = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 3vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 30px;
+  height: 20px;
+
   background: none;
 
   @media screen and (min-width: 768px) {
@@ -74,8 +85,15 @@ export const BurgerBtn = styled.button`
   }
 `;
 
-export const BurgerBtnIcon = styled(BurgerMenu)`
-  width: 30px;
-  height: 18px;
-  stroke: var(--primaryColor);
+const line = `height: 2px; width: 100%; background-color: var(--primaryColor); border-radius: 5px;`;
+
+export const TopLine = styled.div`
+  ${line}
+`;
+export const MiddleLine = styled.div`
+  ${line}
+  width: 80%;
+`;
+export const BottomLine = styled.div`
+  ${line}
 `;

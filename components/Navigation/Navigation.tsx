@@ -1,22 +1,71 @@
-import { FC } from "react";
+import { FC, MouseEvent, useState } from "react";
+import { ButtonIcon, ButtonText } from "../Buttons";
+import { useRouter } from "next/router";
+import { useGlobalState } from "@/globalState";
+import { Portal } from "../Modals/Portal";
+import { gsap } from "gsap";
 import {
   Nav,
   LogoutBtn,
   LogoutFirst,
   LogoutSecond,
   BurgerBtn,
-  BurgerBtnIcon,
+  TopLine,
+  MiddleLine,
+  BottomLine,
 } from "./Navigation.styled";
-import { ButtonIcon, ButtonText } from "../Buttons";
-import { useRouter } from "next/router";
-import { useGlobalState } from "@/globalState";
 
 export const Navigation: FC = () => {
+  const [burgerBtnActive, setBurgerBtnActive] = useState(false);
   const router = useRouter();
   const { isLogedIn, logout } = useGlobalState();
 
   const handleLogout = () => {
     logout();
+  };
+
+  const handleBurgerBtn = (e: MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget);
+
+    if (burgerBtnActive) {
+      e.currentTarget.style.zIndex = "0";
+
+      gsap.to(".burgerTopLine", {
+        duration: 0.2,
+        rotate: 0,
+        y: 0,
+      });
+      gsap.to(".burgerMiddleLine", {
+        duration: 0.2,
+        width: "80%",
+        rotate: 0,
+      });
+      gsap.to(".burgerBottomLine", {
+        duration: 0.2,
+        rotate: 0,
+        y: 0,
+      });
+    } else {
+      e.currentTarget.style.zIndex = "100";
+
+      gsap.to(".burgerTopLine", {
+        duration: 0.2,
+        rotate: 45,
+        y: 9,
+      });
+      gsap.to(".burgerMiddleLine", {
+        width: 0,
+        duration: 0.2,
+        rotate: -45,
+      });
+      gsap.to(".burgerBottomLine", {
+        duration: 0.2,
+        rotate: -45,
+        y: -9,
+      });
+    }
+
+    setBurgerBtnActive(!burgerBtnActive);
   };
 
   return (
@@ -72,9 +121,13 @@ export const Navigation: FC = () => {
         )}
       </Nav>
 
-      <BurgerBtn>
-        <BurgerBtnIcon />
-      </BurgerBtn>
+      <Portal>
+        <BurgerBtn onClick={handleBurgerBtn}>
+          <TopLine className="burgerTopLine" />
+          <MiddleLine className="burgerMiddleLine" />
+          <BottomLine className="burgerBottomLine" />
+        </BurgerBtn>
+      </Portal>
     </>
   );
 };
