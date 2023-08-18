@@ -18,12 +18,12 @@ export const Button = styled.button`
   background: none;
 
   &:hover svg,
-  &:focus svg {
+  &:focus-visible svg {
     fill: var(--whiteColor);
   }
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 `;

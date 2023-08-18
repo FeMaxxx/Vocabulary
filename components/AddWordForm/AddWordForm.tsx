@@ -58,10 +58,6 @@ export const AddWordForm: FC = () => {
     }
   };
 
-  const handleSubmitBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.blur();
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -172,11 +168,7 @@ export const AddWordForm: FC = () => {
         )}
 
         {!errorMessage && !addWordLoading && !successfulWordAdd && (
-          <SubmitBtn
-            onClick={handleSubmitBtn}
-            className="submitBtn"
-            type="submit"
-          >
+          <SubmitBtn className="submitBtn" type="submit">
             Add word
             <BtnFillAnimation />
           </SubmitBtn>

@@ -69,7 +69,7 @@ export const GoogleBtn = styled.a`
   height: 70px;
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 

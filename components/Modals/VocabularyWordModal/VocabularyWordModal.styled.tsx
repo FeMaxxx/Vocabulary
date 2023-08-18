@@ -179,17 +179,17 @@ export const ReStudyButton = styled.button`
   transition: color var(--animation);
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--textColor);
   }
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 
   &:hover svg,
-  &:focus svg {
+  &:focus-visible svg {
     fill: var(--whiteColor);
   }
 

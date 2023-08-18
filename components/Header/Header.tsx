@@ -14,7 +14,6 @@ export const Header: FC = () => {
 
   const handleLogo = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    e.currentTarget.blur();
     router.push("/");
   };
 

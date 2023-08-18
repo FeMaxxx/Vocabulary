@@ -45,7 +45,7 @@ export const WordBtn = styled.button`
   text-overflow: ellipsis;
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 `;

@@ -41,7 +41,6 @@ export const LearnWordsContainer: FC<Props> = ({ words, lvl }) => {
   }, [words]);
 
   const handleWordClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.blur();
     const findWord = words.find(word => word._id === e.currentTarget.id);
 
     setWord(findWord);

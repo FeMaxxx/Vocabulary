@@ -84,12 +84,12 @@ export const SubmitBtn = styled.button`
   transition: color var(--animation);
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--textColor);
   }
 

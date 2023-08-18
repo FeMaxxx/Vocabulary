@@ -27,12 +27,12 @@ export const Button = styled.button`
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--textColor);
   }
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 
@@ -41,7 +41,7 @@ export const Button = styled.button`
     color: var(--textColor);
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       cursor: default;
     }
 

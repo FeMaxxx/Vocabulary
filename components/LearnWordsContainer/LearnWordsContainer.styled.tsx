@@ -84,7 +84,7 @@ export const Word = styled.button`
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--primaryColor);
   }
 `;
@@ -115,12 +115,12 @@ export const Button = styled.button`
   background: none;
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 
   &:hover svg,
-  &:focus svg {
+  &:focus-visible svg {
     fill: var(--textColor);
   }
 `;

@@ -50,12 +50,12 @@ export const LvlButton = styled.button`
   }
 
   &:hover div,
-  &:focus div {
+  &:focus-visible div {
     top: 0;
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--textColor);
   }
 `;

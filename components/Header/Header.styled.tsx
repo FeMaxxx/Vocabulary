@@ -54,8 +54,8 @@ export const Logo = styled.button`
 
   &:hover h1,
   &:hover svg,
-  &:focus h1,
-  &:focus svg {
+  &:focus-visible h1,
+  &:focus-visible svg {
     fill: var(--whiteColor);
     color: var(--textColor);
   }

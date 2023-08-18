@@ -19,7 +19,6 @@ export const VocabularyWordsList: FC<Props> = ({ words }) => {
   const [word, setWord] = useState<VocabularyWordI | null>(null);
 
   const handleWordBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.blur();
     const findWord = words?.find(word => word._id === e.currentTarget.id);
 
     setWord(findWord as VocabularyWordI);

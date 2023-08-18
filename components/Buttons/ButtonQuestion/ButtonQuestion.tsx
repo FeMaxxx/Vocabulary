@@ -10,8 +10,6 @@ interface ButtonQuestionProps {
 
 export const ButtonQuestion: FC<ButtonQuestionProps> = ({ fnc, id }) => {
   const handleButton = (e: MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.blur();
-
     fnc();
   };
 

@@ -34,12 +34,12 @@ export const LogoutBtn = styled.button`
   }
 
   &:hover svg,
-  &:focus svg {
+  &:focus-visible svg {
     fill: var(--whiteColor);
   }
 
   &:hover svg:nth-of-type(2),
-  &:focus svg:nth-of-type(2) {
+  &:focus-visible svg:nth-of-type(2) {
     left: 13px;
   }
 `;
