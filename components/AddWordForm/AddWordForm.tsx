@@ -153,7 +153,8 @@ export const AddWordForm: FC = () => {
                 {successfulWordAdd.translation
                   .split(/[,.]+/)
                   .map(
-                    word => word.trim().charAt(0).toUpperCase() + word.slice(1)
+                    word =>
+                      word.trim().charAt(0).toUpperCase() + word.trim().slice(1)
                   )
                   .filter(word => word !== "")
                   .map((word, index, arr) => {

@@ -49,7 +49,7 @@ export const CheckRandomWordModal: FC<AddWordModalProps> = ({
       setWrongWords(null);
       setTranslation("");
       setShowFirstLetter(false);
-    }, 1000);
+    }, 200);
   };
 
   const handleBackDropClick = (e: MouseEvent<HTMLDivElement>) => {

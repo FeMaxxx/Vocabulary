@@ -47,7 +47,7 @@ export const ConfirmWordModal: FC<AddWordModalProps> = ({
       setRightWords(null);
       setWrongWords(null);
       setTranslation("");
-    }, 1000);
+    }, 200);
   };
 
   const handleBackDropClick = (e: MouseEvent<HTMLDivElement>) => {
