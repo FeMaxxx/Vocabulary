@@ -20,7 +20,9 @@ import {
   ButtonsContainer,
   ReStudyButton,
   ReStudyButtonIcon,
+  LoaderWrap,
 } from "./VocabularyWordModal.styled";
+import { Loader } from "@/components/Loader";
 
 interface VocabularyWordModal extends ModalProps {
   word: VocabularyWordI | null;
@@ -31,7 +33,7 @@ export const VocabularyWordModal: FC<VocabularyWordModal> = ({
   onClose,
   word,
 }) => {
-  const { deleteWord, moveWord } = useWordsState();
+  const { deleteWord, moveWord, moveLoading } = useWordsState();
 
   const handleBackDropClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -119,15 +121,23 @@ export const VocabularyWordModal: FC<VocabularyWordModal> = ({
                 </span>
               </p>
 
-              <ButtonsContainer>
-                <ButtonIcon fnc={handleDeleteButton} icon="dumpster" />
+              {!moveLoading && (
+                <ButtonsContainer>
+                  <ButtonIcon fnc={handleDeleteButton} icon="dumpster" />
 
-                <ReStudyButton onClick={handleReStudyButton}>
-                  Send for re-study
-                  <ReStudyButtonIcon />
-                  <BtnFillAnimation />
-                </ReStudyButton>
-              </ButtonsContainer>
+                  <ReStudyButton onClick={handleReStudyButton}>
+                    Send for re-study
+                    <ReStudyButtonIcon />
+                    <BtnFillAnimation />
+                  </ReStudyButton>
+                </ButtonsContainer>
+              )}
+
+              {moveLoading && (
+                <LoaderWrap>
+                  <Loader size={48} />
+                </LoaderWrap>
+              )}
             </Wrap>
           </Modal>
         </BackDrop>
