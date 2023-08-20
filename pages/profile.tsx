@@ -4,6 +4,7 @@ import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
 import { instance } from "@/api/config";
 import { StatsI } from "@/types/stats";
+import Head from "next/head";
 
 const Profile: FC = (data: any) => {
   const [stats, setStats] = useState<StatsI | null>(null);
@@ -25,7 +26,14 @@ const Profile: FC = (data: any) => {
     return null;
   }
 
-  return <ProfilePage stats={stats} />;
+  return (
+    <>
+      <Head>
+        <title>V | Profile</title>
+      </Head>
+      <ProfilePage stats={stats} />
+    </>
+  );
 };
 
 export default Profile;

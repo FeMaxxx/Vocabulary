@@ -1,27 +1,16 @@
 import { FC } from "react";
 import HomePage from "@/components/Pages/Home";
+import Head from "next/head";
 
 const Home: FC = () => {
-  return <HomePage />;
+  return (
+    <>
+      <Head>
+        <title>Vocabulary</title>
+      </Head>
+      <HomePage />
+    </>
+  );
 };
 
 export default Home;
-
-// export async function getServerSideProps({ req, res }: any) {
-//   const accessTokenValue = req.cookies.accessToken;
-//   try {
-//     const response: any = await instance.get(`/auth/current`, {
-//       headers: {
-//         Authorization: `Bearer ${accessTokenValue}`,
-//       },
-//     });
-
-//     return {
-//       props: { email: response.data.user.email },
-//     };
-//   } catch (error) {
-//     return {
-//       props: { email: null },
-//     };
-//   }
-// }

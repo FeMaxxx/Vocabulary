@@ -4,6 +4,7 @@ import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
 import { useWordsState } from "@/wordsState";
 import { instance } from "@/api/config";
+import Head from "next/head";
 
 const Vocabulary: FC = (data: any) => {
   const { isLogedIn } = useGlobalState();
@@ -20,7 +21,14 @@ const Vocabulary: FC = (data: any) => {
     return null;
   }
 
-  return <VocabularyPage />;
+  return (
+    <>
+      <Head>
+        <title>V | Vocabulary</title>
+      </Head>
+      <VocabularyPage />
+    </>
+  );
 };
 
 export default Vocabulary;

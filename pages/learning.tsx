@@ -24,7 +24,7 @@ const Learning: FC = (data: any) => {
   return (
     <>
       <Head>
-        <title>Lerning</title>
+        <title>V | Lerning</title>
       </Head>
       <LearningPage />
     </>
