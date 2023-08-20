@@ -1,9 +1,10 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import { ButtonIcon, ButtonText } from "../Buttons";
 import { useRouter } from "next/router";
 import { useGlobalState } from "@/globalState";
 import { Portal } from "../Modals/Portal";
 import { gsap } from "gsap";
+import { NavigationModal } from "../Modals";
 import {
   Nav,
   LogoutBtn,
@@ -16,7 +17,7 @@ import {
 } from "./Navigation.styled";
 
 export const Navigation: FC = () => {
-  const [burgerBtnActive, setBurgerBtnActive] = useState(false);
+  const [navigationModalOpen, setNavigationModalOpen] = useState(false);
   const router = useRouter();
   const { isLogedIn, logout } = useGlobalState();
 
@@ -24,30 +25,15 @@ export const Navigation: FC = () => {
     logout();
   };
 
-  const handleBurgerBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(e.currentTarget);
+  const handleBurgerBtn = () => {
+    setNavigationModalOpen(!navigationModalOpen);
+  };
 
-    if (burgerBtnActive) {
-      e.currentTarget.style.zIndex = "0";
-
-      gsap.to(".burgerTopLine", {
-        duration: 0.2,
-        rotate: 0,
-        y: 0,
+  useEffect(() => {
+    if (navigationModalOpen) {
+      gsap.to(".burgerBtn", {
+        zIndex: 100,
       });
-      gsap.to(".burgerMiddleLine", {
-        duration: 0.2,
-        width: "80%",
-        rotate: 0,
-      });
-      gsap.to(".burgerBottomLine", {
-        duration: 0.2,
-        rotate: 0,
-        y: 0,
-      });
-    } else {
-      e.currentTarget.style.zIndex = "100";
-
       gsap.to(".burgerTopLine", {
         duration: 0.2,
         rotate: 45,
@@ -63,10 +49,27 @@ export const Navigation: FC = () => {
         rotate: -45,
         y: -9,
       });
+    } else {
+      gsap.to(".burgerBtn", {
+        zIndex: 0,
+      });
+      gsap.to(".burgerTopLine", {
+        duration: 0.2,
+        rotate: 0,
+        y: 0,
+      });
+      gsap.to(".burgerMiddleLine", {
+        duration: 0.2,
+        width: "80%",
+        rotate: 0,
+      });
+      gsap.to(".burgerBottomLine", {
+        duration: 0.2,
+        rotate: 0,
+        y: 0,
+      });
     }
-
-    setBurgerBtnActive(!burgerBtnActive);
-  };
+  }, [navigationModalOpen]);
 
   return (
     <>
@@ -122,12 +125,17 @@ export const Navigation: FC = () => {
       </Nav>
 
       <Portal>
-        <BurgerBtn onClick={handleBurgerBtn}>
+        <BurgerBtn className="burgerBtn" tabIndex={2} onClick={handleBurgerBtn}>
           <TopLine className="burgerTopLine" />
           <MiddleLine className="burgerMiddleLine" />
           <BottomLine className="burgerBottomLine" />
         </BurgerBtn>
       </Portal>
+
+      <NavigationModal
+        isOpen={navigationModalOpen}
+        onClose={() => setNavigationModalOpen(false)}
+      />
     </>
   );
 };

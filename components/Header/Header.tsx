@@ -20,7 +20,7 @@ export const Header: FC = () => {
   return (
     <HeaderContainer>
       <Container>
-        <Logo onClick={handleLogo}>
+        <Logo tabIndex={1} onClick={handleLogo}>
           <LogoIcon />
           <SiteName>Vocabulary</SiteName>
         </Logo>

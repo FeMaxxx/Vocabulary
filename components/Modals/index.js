@@ -7,6 +7,7 @@ import { VocabularyWordModal } from "./VocabularyWordModal/VocabularyWordModal";
 import { CheckRandomWordModal } from "./CheckRandomWordModal/CheckRandomWordModal";
 import { RandomWordInfo } from "./RandomWordInfo/RandomWordInfo";
 import { EnglishLevelModal } from "./EnglishLevelModal/EnglishLevelModal";
+import { NavigationModal } from "./NavigationModal/NavigationModal";
 
 export {
   VerificationModal,
@@ -18,4 +19,5 @@ export {
   CheckRandomWordModal,
   RandomWordInfo,
   EnglishLevelModal,
+  NavigationModal,
 };

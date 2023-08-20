@@ -80,6 +80,15 @@ export const BurgerBtn = styled.button`
 
   background: none;
 
+  & div {
+    transition: background-color var(--animation);
+  }
+
+  &:hover div,
+  &:focus-visible div {
+    background-color: var(--whiteColor);
+  }
+
   @media screen and (min-width: 768px) {
     display: none;
   }
