@@ -7,19 +7,19 @@ import { instance } from "@/api/config";
 import Head from "next/head";
 
 const Vocabulary: FC = (data: any) => {
-  const { isLogedIn } = useGlobalState();
+  const { isLogedIn, logout } = useGlobalState();
   const { setWords, getWords } = useWordsState();
   const router = useRouter();
-
-  useEffect(() => {
-    if (data.data) setWords(data.data[0]);
-    if (data.data === null) getWords();
-  }, []);
 
   if (isLogedIn === false) {
     router.push("/login");
     return null;
   }
+
+  useEffect(() => {
+    if (data.data) setWords(data.data[0]);
+    if (data.data === null) getWords();
+  }, []);
 
   return (
     <>

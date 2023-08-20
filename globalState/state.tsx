@@ -2,6 +2,14 @@ import { create } from "zustand";
 import { instance, authInstance } from "@/api/config";
 import { Auth } from "@/types/auth";
 
+const setToken = (token: string) => {
+  if (token === "") {
+    instance.defaults.headers.common.Authorization = "";
+  } else {
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
+};
+
 interface State {
   userEmail: string | null;
   isLogedIn: boolean | null;
@@ -49,7 +57,16 @@ const globalState = create<State>()(set => ({
     set({ loading: true, loginError: null });
     try {
       const response = await authInstance.post(`auth/login`, userData);
-      set({ loading: false, isLogedIn: true, userEmail: response.data.email });
+
+      setToken(response.data.tokens.accessToken);
+      localStorage.setItem("accessToken1", response.data.tokens.accessToken);
+      localStorage.setItem("refreshToken1", response.data.tokens.refreshToken);
+
+      set({
+        loading: false,
+        isLogedIn: true,
+        userEmail: response.data.user.email,
+      });
     } catch (error: any) {
       if (error.code === "ERR_NETWORK") {
         set({
@@ -78,11 +95,15 @@ const globalState = create<State>()(set => ({
         `auth/verifyEmail/${verificationCode}`
       );
 
+      setToken(response.data.tokens.accessToken);
+      localStorage.setItem("accessToken1", response.data.tokens.accessToken);
+      localStorage.setItem("refreshToken1", response.data.tokens.refreshToken);
+
       set({
         loading: false,
         isLogedIn: true,
         needVerifyEmail: false,
-        userEmail: response.data.email,
+        userEmail: response.data.user.email,
       });
     } catch (error: any) {
       if (error.code === "ERR_NETWORK") {
@@ -129,7 +150,15 @@ const globalState = create<State>()(set => ({
       loading: false,
       needVerifyEmail: false,
     });
-    await instance.post(`auth/logout`);
+
+    localStorage.setItem("accessToken1", "");
+    localStorage.setItem("refreshToken1", "");
+
+    try {
+      await authInstance.post(`auth/logout`);
+    } catch {}
+
+    setToken("");
   },
 
   clearError: async () => {

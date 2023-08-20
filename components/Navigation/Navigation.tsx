@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ButtonIcon, ButtonText } from "../Buttons";
 import { useRouter } from "next/router";
 import { useGlobalState } from "@/globalState";
@@ -30,6 +30,9 @@ export const Navigation: FC = () => {
   };
 
   useEffect(() => {
+    const el = document.querySelector(".burgerBtn");
+    if (!el) return;
+
     if (navigationModalOpen) {
       gsap.to(".burgerBtn", {
         zIndex: 100,

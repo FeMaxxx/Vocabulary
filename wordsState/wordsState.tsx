@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { instance } from "@/api/config";
 import { WordsI, MoveWordI, DeleteWordI } from "@/types/words";
+import { useGlobalState } from "@/globalState";
+import { use } from "react";
 
 interface State {
   words: WordsI | null;
@@ -29,9 +31,8 @@ const wordsState = create<State>()(set => ({
 
       set({ words: response.data[0], moveLoading: false });
     } catch (error: any) {
-      const { message } = JSON.parse(error.request.response);
       set({
-        error: message,
+        error: "Move word failed",
         moveLoading: false,
       });
     }
@@ -44,9 +45,8 @@ const wordsState = create<State>()(set => ({
 
       set({ words: response.data[0], loading: false });
     } catch (error: any) {
-      const { message } = JSON.parse(error.request.response);
       set({
-        error: message,
+        error: "Get words failed",
         loading: false,
       });
     }
@@ -60,9 +60,8 @@ const wordsState = create<State>()(set => ({
 
       set({ words: response.data[0], moveLoading: false });
     } catch (error: any) {
-      const { message } = JSON.parse(error.request.response);
       set({
-        error: message,
+        error: "Deletion failed",
         moveLoading: false,
       });
     }

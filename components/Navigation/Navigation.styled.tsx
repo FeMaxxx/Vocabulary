@@ -40,7 +40,14 @@ export const LogoutBtn = styled.button`
 
   &:hover svg:nth-of-type(2),
   &:focus-visible svg:nth-of-type(2) {
-    left: 13px;
+    left: 10px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.smallDesktop}) {
+    &:hover svg:nth-of-type(2),
+    &:focus-visible svg:nth-of-type(2) {
+      left: 13px;
+    }
   }
 `;
 

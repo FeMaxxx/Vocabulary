@@ -11,20 +11,22 @@ const Profile: FC = (data: any) => {
   const { isLogedIn } = useGlobalState();
   const router = useRouter();
 
+  if (isLogedIn === false) {
+    router.push("/login");
+    return null;
+  }
+
   const getStats = async () => {
-    const response = await instance.get(`stats`);
-    setStats(response.data[0]);
+    try {
+      const response = await instance.get(`stats`);
+      setStats(response.data[0]);
+    } catch (e) {}
   };
 
   useEffect(() => {
     if (data.data) setStats(data.data[0]);
     if (data.data === null) getStats();
   }, []);
-
-  if (isLogedIn === false) {
-    router.push("/login");
-    return null;
-  }
 
   return (
     <>

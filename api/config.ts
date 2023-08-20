@@ -1,13 +1,10 @@
 import axios from "axios";
 
-export const authInstance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_BASE_API_URL}`,
-});
+axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_BASE_API_URL}`;
 
-export const instance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_BASE_API_URL}`,
-  withCredentials: true,
-});
+export const authInstance = axios.create({});
+
+export const instance = axios.create({});
 
 instance.interceptors.response.use(
   config => config,
@@ -20,12 +17,25 @@ instance.interceptors.response.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        await instance.post(`auth/refresh`, {
-          withCredentials: true,
-        });
+        const refreshToken = localStorage.getItem("refreshToken1");
+        const response = await instance.post(`auth/refresh`, { refreshToken });
+
+        instance.defaults.headers.common.Authorization = `Bearer ${response.data.tokens.accessToken}`;
+        localStorage.setItem("accessToken1", response.data.tokens.accessToken);
+        localStorage.setItem(
+          "refreshToken1",
+          response.data.tokens.refreshToken
+        );
+        originalRequest.headers.Authorization = `Bearer ${response.data.tokens.accessToken}`;
+
         return instance.request(originalRequest);
-      } catch (e) {}
+      } catch (e) {
+        instance.defaults.headers.common.Authorization = ``;
+        localStorage.setItem("accessToken1", "");
+        localStorage.setItem("refreshToken1", "");
+      }
+    } else {
+      throw error;
     }
-    throw error;
   }
 );
