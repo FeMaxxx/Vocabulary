@@ -11,15 +11,15 @@ const Profile: FC = (data: any) => {
   const { getStats, setStats } = useStatsState();
   const router = useRouter();
 
-  if (isLogedIn === false) {
-    router.push("/login");
-    return null;
-  }
-
   useEffect(() => {
     if (data.data) setStats(data.data[0]);
     if (data.data === null) getStats();
   }, []);
+
+  if (isLogedIn === false) {
+    router.push("/login");
+    return null;
+  }
 
   return (
     <>

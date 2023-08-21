@@ -11,15 +11,15 @@ const Vocabulary: FC = (data: any) => {
   const { setWords, getWords } = useWordsState();
   const router = useRouter();
 
-  if (isLogedIn === false) {
-    router.push("/login");
-    return null;
-  }
-
   useEffect(() => {
     if (data.data) setWords(data.data[0]);
     if (data.data === null) getWords();
   }, []);
+
+  if (isLogedIn === false) {
+    router.push("/login");
+    return null;
+  }
 
   return (
     <>
