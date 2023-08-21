@@ -2,9 +2,9 @@ import { FC, useState, MouseEvent, useEffect } from "react";
 import { AddWordForm } from "@/components/AddWordForm";
 import { LearnWordsContainer } from "@/components/LearnWordsContainer";
 import { useWordsState } from "@/wordsState";
-import throttle from "lodash.throttle";
 import { BtnFillAnimation } from "@/components/Buttons";
 import { Loader } from "@/components/Loader";
+import throttle from "lodash.throttle";
 import {
   Container,
   LvlButtonsContainer,
@@ -14,19 +14,17 @@ import {
 } from "./Learning.styled";
 
 const Learning: FC = () => {
-  const screenWidth = window.innerWidth;
-  const [wordsContainer, setWordsContainer] = useState<number | "all">(
-    screenWidth > 1023 ? "all" : 1
-  );
+  const [wordsContainer, setWordsContainer] = useState<number | "all">("all");
   const { words, loading } = useWordsState();
 
   const handleWindowResize = () => {
     const screenWidth = window.innerWidth;
+    const wordsC = localStorage.getItem("wordsContainer") as string;
 
     if (screenWidth > 1023) {
       setWordsContainer("all");
     } else {
-      setWordsContainer(1);
+      setWordsContainer(wordsC ? Number(wordsC) : 1);
     }
   };
 
@@ -41,10 +39,13 @@ const Learning: FC = () => {
   const handleLvlButton = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.name === "1") {
       setWordsContainer(1);
+      localStorage.setItem("wordsContainer", "1");
     } else if (e.currentTarget.name === "2") {
       setWordsContainer(2);
+      localStorage.setItem("wordsContainer", "2");
     } else if (e.currentTarget.name === "3") {
       setWordsContainer(3);
+      localStorage.setItem("wordsContainer", "3");
     }
   };
 
