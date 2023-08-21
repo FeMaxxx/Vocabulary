@@ -7,11 +7,11 @@ import Head from "next/head";
 
 const Profile: FC = () => {
   const { isLogedIn } = useGlobalState();
-  const { getStats, stats } = useStatsState();
+  const { getStats } = useStatsState();
   const router = useRouter();
 
   useEffect(() => {
-    if (!stats) getStats();
+    getStats();
   }, []);
 
   if (isLogedIn === false) {
