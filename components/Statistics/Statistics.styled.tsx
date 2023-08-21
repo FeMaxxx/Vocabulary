@@ -60,3 +60,9 @@ export const List = styled.section`
     font-size: 20px;
   }
 `;
+
+export const LoaderWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

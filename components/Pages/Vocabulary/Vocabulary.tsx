@@ -70,7 +70,13 @@ const Vocabulary: FC = () => {
 
   return (
     <>
-      {words && words?.vocabulary.length > 0 && (
+      {loading && (
+        <LoaderWrap>
+          <Loader size={150} />
+        </LoaderWrap>
+      )}
+
+      {!loading && words && words?.vocabulary.length > 0 && (
         <Container>
           <Wrap>
             <Background>
@@ -126,20 +132,13 @@ const Vocabulary: FC = () => {
 
           <CheckRandomWord wordsCount={words?.vocabulary.length as number} />
 
-          {loading && (
-            <LoaderWrap>
-              <Loader size={150} />
-            </LoaderWrap>
-          )}
-          {!loading && vocabularyWords?.length !== 0 && (
-            <VocabularyWordsList
-              words={vocabularyWords ? vocabularyWords : null}
-            />
-          )}
+          <VocabularyWordsList
+            words={vocabularyWords ? vocabularyWords : null}
+          />
         </Container>
       )}
 
-      {words?.vocabulary.length === 0 && (
+      {!loading && words?.vocabulary.length === 0 && (
         <InfoContainer>
           <Text>Learn at least one word to open this page</Text>
           <Vocary />

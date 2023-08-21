@@ -8,12 +8,11 @@ import Head from "next/head";
 
 const Learning: FC = (data: any) => {
   const { isLogedIn } = useGlobalState();
-  const { setWords, getWords } = useWordsState();
+  const { words, getWords } = useWordsState();
   const router = useRouter();
 
   useEffect(() => {
-    if (data.data) setWords(data.data[0]);
-    if (data.data === null) getWords();
+    if (!words) getWords();
   }, []);
 
   if (isLogedIn === false) {
@@ -33,24 +32,24 @@ const Learning: FC = (data: any) => {
 
 export default Learning;
 
-export async function getServerSideProps({ req, res }: any) {
-  const accessTokenValue = req.cookies.accessToken;
+// export async function getServerSideProps({ req, res }: any) {
+//   const accessTokenValue = req.cookies.accessToken;
 
-  try {
-    const response: any = await instance.get(`words`, {
-      headers: {
-        Authorization: `Bearer ${accessTokenValue}`,
-      },
-    });
+//   try {
+//     const response: any = await instance.get(`words`, {
+//       headers: {
+//         Authorization: `Bearer ${accessTokenValue}`,
+//       },
+//     });
 
-    const data = response?.data !== undefined ? response?.data : null;
+//     const data = response?.data !== undefined ? response?.data : null;
 
-    return {
-      props: { data },
-    };
-  } catch (error) {
-    return {
-      props: { data: null },
-    };
-  }
-}
+//     return {
+//       props: { data },
+//     };
+//   } catch (error) {
+//     return {
+//       props: { data: null },
+//     };
+//   }
+// }

@@ -2,18 +2,16 @@ import { FC, useEffect } from "react";
 import ProfilePage from "@/components/Pages/Profile";
 import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
-import { instance } from "@/api/config";
 import { useStatsState } from "@/statsState";
 import Head from "next/head";
 
-const Profile: FC = (data: any) => {
+const Profile: FC = () => {
   const { isLogedIn } = useGlobalState();
-  const { getStats, setStats } = useStatsState();
+  const { getStats, stats } = useStatsState();
   const router = useRouter();
 
   useEffect(() => {
-    if (data.data) setStats(data.data[0]);
-    if (data.data === null) getStats();
+    if (!stats) getStats();
   }, []);
 
   if (isLogedIn === false) {
@@ -32,25 +30,3 @@ const Profile: FC = (data: any) => {
 };
 
 export default Profile;
-
-export async function getServerSideProps({ req, res }: any) {
-  const accessTokenValue = req.cookies.accessToken;
-
-  try {
-    const response: any = await instance.get(`stats`, {
-      headers: {
-        Authorization: `Bearer ${accessTokenValue}`,
-      },
-    });
-
-    const data = response?.data !== undefined ? response?.data : null;
-
-    return {
-      props: { data },
-    };
-  } catch (error) {
-    return {
-      props: { data: null },
-    };
-  }
-}

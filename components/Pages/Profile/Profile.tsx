@@ -20,7 +20,7 @@ const Profile: FC = () => {
       />
 
       <Wrap>
-        <Statistics stats={stats} />
+        <Statistics />
         <Achievements />
       </Wrap>
     </Container>

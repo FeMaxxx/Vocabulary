@@ -130,8 +130,7 @@ export const LoaderWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-top: 50px;
+  height: 80vh;
 `;
 
 export const InfoContainer = styled.div`
