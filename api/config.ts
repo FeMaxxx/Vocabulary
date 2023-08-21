@@ -30,9 +30,13 @@ instance.interceptors.response.use(
 
         return instance.request(originalRequest);
       } catch (e) {
-        instance.defaults.headers.common.Authorization = ``;
-        localStorage.setItem("accessToken1", "");
-        localStorage.setItem("refreshToken1", "");
+        const token = localStorage.getItem("accessToken1");
+        if (token) {
+          window.location.reload();
+          instance.defaults.headers.common.Authorization = ``;
+          localStorage.setItem("accessToken1", "");
+          localStorage.setItem("refreshToken1", "");
+        }
       }
     } else {
       throw error;

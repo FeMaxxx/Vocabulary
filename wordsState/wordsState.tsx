@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import { instance } from "@/api/config";
 import { WordsI, MoveWordI, DeleteWordI } from "@/types/words";
-import { useGlobalState } from "@/globalState";
-import { use } from "react";
 
 interface State {
   words: WordsI | null;
@@ -14,7 +12,6 @@ interface State {
   getWords: () => void;
   deleteWord: (deleteData: DeleteWordI) => void;
   setWords: (words: WordsI) => void;
-  updateRandomWordStats: (successes: boolean) => void;
 }
 
 const wordsState = create<State>()(set => ({
@@ -70,13 +67,6 @@ const wordsState = create<State>()(set => ({
   setWords: async words => {
     set({ words, loading: false });
   },
-
-  updateRandomWordStats: async successes => {
-    set({ error: null });
-    try {
-      await instance.patch(`stats/randomVord`, { successes });
-    } catch (error: any) {}
-  },
 }));
 
 export const useWordsState = () => {
@@ -89,9 +79,6 @@ export const useWordsState = () => {
   const getWords = wordsState(state => state.getWords);
   const deleteWord = wordsState(state => state.deleteWord);
   const setWords = wordsState(state => state.setWords);
-  const updateRandomWordStats = wordsState(
-    state => state.updateRandomWordStats
-  );
 
   return {
     words,
@@ -103,6 +90,5 @@ export const useWordsState = () => {
     getWords,
     deleteWord,
     setWords,
-    updateRandomWordStats,
   };
 };

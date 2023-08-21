@@ -12,6 +12,7 @@ import { Portal } from "../Portal";
 import { addHours } from "date-fns";
 import { ButtonClose, ButtonIcon, ButtonText } from "@/components/Buttons";
 import { useWordsState } from "@/wordsState";
+import { useStatsState } from "@/statsState";
 import {
   BackDrop,
   Modal,
@@ -41,7 +42,8 @@ export const CheckRandomWordModal: FC<AddWordModalProps> = ({
   const [showFirstLetter, setShowFirstLetter] = useState(false);
   const [rightWords, setRightWords] = useState<string[] | null>(null);
   const [wrongWords, setWrongWords] = useState<string[] | null>(null);
-  const { moveWord, updateRandomWordStats } = useWordsState();
+  const { moveWord } = useWordsState();
+  const { updateRandomWordStats } = useStatsState();
 
   const cleansing = () => {
     setTimeout(() => {

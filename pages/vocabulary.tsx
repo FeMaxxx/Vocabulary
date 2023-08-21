@@ -7,7 +7,7 @@ import { instance } from "@/api/config";
 import Head from "next/head";
 
 const Vocabulary: FC = (data: any) => {
-  const { isLogedIn, logout } = useGlobalState();
+  const { isLogedIn } = useGlobalState();
   const { setWords, getWords } = useWordsState();
   const router = useRouter();
 

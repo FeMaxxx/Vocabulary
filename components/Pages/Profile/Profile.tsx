@@ -3,15 +3,12 @@ import { EnglishLevelScale } from "@/components/EnglishLevelScale";
 import { Statistics } from "@/components/Statistics";
 import { Achievements } from "@/components/Achievements";
 import { useGlobalState } from "@/globalState";
-import { StatsI } from "@/types/stats";
+import { useStatsState } from "@/statsState";
 import { Container, EmailContainer, Email, Wrap } from "./Profile.styled";
 
-interface Props {
-  stats: StatsI | null;
-}
-
-const Profile: FC<Props> = ({ stats }) => {
+const Profile: FC = () => {
   const { userEmail } = useGlobalState();
+  const { stats } = useStatsState();
 
   return (
     <Container>

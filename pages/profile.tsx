@@ -1,27 +1,20 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import ProfilePage from "@/components/Pages/Profile";
 import { useGlobalState } from "@/globalState";
 import { useRouter } from "next/router";
 import { instance } from "@/api/config";
-import { StatsI } from "@/types/stats";
+import { useStatsState } from "@/statsState";
 import Head from "next/head";
 
 const Profile: FC = (data: any) => {
-  const [stats, setStats] = useState<StatsI | null>(null);
   const { isLogedIn } = useGlobalState();
+  const { getStats, setStats } = useStatsState();
   const router = useRouter();
 
   if (isLogedIn === false) {
     router.push("/login");
     return null;
   }
-
-  const getStats = async () => {
-    try {
-      const response = await instance.get(`stats`);
-      setStats(response.data[0]);
-    } catch (e) {}
-  };
 
   useEffect(() => {
     if (data.data) setStats(data.data[0]);
@@ -33,7 +26,7 @@ const Profile: FC = (data: any) => {
       <Head>
         <title>V | Profile</title>
       </Head>
-      <ProfilePage stats={stats} />
+      <ProfilePage />
     </>
   );
 };

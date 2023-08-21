@@ -160,7 +160,8 @@ export const RegisterForm: FC = () => {
           <Input
             onChange={handleInput}
             name="password"
-            type="password"
+            type="text"
+            autoComplete="new-password"
             placeholder="password"
             value={password}
           />
