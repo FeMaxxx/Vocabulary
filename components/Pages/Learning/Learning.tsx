@@ -29,6 +29,17 @@ const Learning: FC = () => {
   };
 
   useEffect(() => {
+    const screenWidth = window.innerWidth;
+    const container = localStorage.getItem("wordsContainer");
+
+    if (screenWidth < 1024) {
+      if (container) {
+        setWordsContainer(Number(container));
+      } else {
+        setWordsContainer(1);
+      }
+    }
+
     window.addEventListener("resize", throttle(handleWindowResize, 300));
 
     return () => {
