@@ -12,7 +12,7 @@ const Home: FC = () => {
         {isLogedIn === true &&
           " I'm glad to see you here. It's a great day to learn English words, isn't it? 😁"}
         {isLogedIn === false &&
-          "Hello, I am glad to see you here, I am Vocary and you have come to myterritory, the territory of learning English words😁, if you want I willtell you more, or you can register and start learning right away."}
+          "Hello, I am glad to see you here, I am Vocary and you have come to my territory, the territory of learning English words😁, if you want I will tell you more, or you can register and start learning right away."}
       </Text>
 
       <Vocary />

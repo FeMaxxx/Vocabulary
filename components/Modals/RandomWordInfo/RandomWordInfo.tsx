@@ -57,7 +57,7 @@ export const RandomWordInfo: FC<ModalProps> = ({ isOpen, onClose }) => {
 
           <TextWrap>
             <Text>
-              You can test your knowledge of a random word from your dictionary.
+              You can test your knowledge of a random word from your vocabulary.
               When you click the "<span>Check Random Word</span>" button, a
               window will open with the word you need to translate.
             </Text>
